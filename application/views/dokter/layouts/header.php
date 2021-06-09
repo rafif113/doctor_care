@@ -16,6 +16,7 @@
 	<link href="<?= base_url('assets/admin/') ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/admin/') ?>assets/css/plugins.css" rel="stylesheet" type="text/css" />
 	<!-- END GLOBAL MANDATORY STYLES -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 	<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 	<link href="<?= base_url('assets/admin/') ?>plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">

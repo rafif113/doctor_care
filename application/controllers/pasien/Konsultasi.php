@@ -17,9 +17,9 @@ class Konsultasi extends CI_Controller
 		$this->load->model('pasien/PembayaranModel', 'PembayaranModel');
 	}
 
-	public function index()
+	public function index($id_dokter)
 	{
-		$data['dokter'] = $this->DokterModel->get_dokter()->result();
+		$data['dokter'] = $this->DokterModel->get_single_dokter($id_dokter)->row();
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/tambah-janji', $data);
 		$this->load->view('pasien/layouts/footer');
@@ -27,7 +27,6 @@ class Konsultasi extends CI_Controller
 
 	public function validasi_tambah_janji()
 	{
-		$this->form_validation->set_rules('id_dokter', 'Nama Dokter', 'required');
 		$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
 		$this->form_validation->set_rules('jam', 'Jam Konsultasi', 'required');
 		$this->form_validation->set_rules('keluhan', 'Keluhan', 'required');
@@ -35,16 +34,16 @@ class Konsultasi extends CI_Controller
 
 	public function tambah_janji()
 	{
+		$id_dokter = $this->input->post('id_dokter');
 		$this->validasi_tambah_janji();
 		if (empty($_FILES['foto_keluhan']['name'])) {
 			$this->form_validation->set_rules('foto_keluhan', 'Foto Keluhan', 'required');
 		}
 		if ($this->form_validation->run() == FALSE) {
-			$this->index();
+			$this->index($id_dokter);
 		} else {
 			$id_konsultasi = $this->KonsultasiModel->id_konsultasi();
 			$id_pasien     = $this->session->id_pasien;
-			$id_dokter     = $this->input->post('id_dokter');
 			$tanggal   	   = $this->input->post('tanggal');
 			$jam   		   = $this->input->post('jam');
 			$keluhan   	   = $this->input->post('keluhan');
@@ -60,7 +59,7 @@ class Konsultasi extends CI_Controller
 
 			if (!$this->upload->do_upload('foto_keluhan')) {
 				$this->session->set_flashdata('status', 'File gagal diupload.');
-				$this->index();
+				$this->index($id_dokter);
 			} else {
 				$foto_keluhan = $this->upload->data('file_name');
 				$data_konsultasi = [
@@ -76,17 +75,14 @@ class Konsultasi extends CI_Controller
 
 				$id_pembayaran = $this->PembayaranModel->id_pembayaran();
 				$kode_bayar    = 8888 . random_string('numeric', 8);
-				$nominal 	   = 50000;
+				$nominal 	   = 80000;
 				$data_pembayaran = [
 					'id_pembayaran' => $id_pembayaran,
 					'kode_bayar'    => $kode_bayar,
 					'nominal' 		=> $nominal,
+					'status_bayar'  => 'Belum dibayar',
 					'id_konsultasi' => $id_konsultasi,
 				];
-
-				// var_dump($data_konsultasi);
-				// echo ('<br>');
-				// var_dump($data_pembayaran);
 				$this->KonsultasiModel->tambah_konsultasi($data_konsultasi);
 				$this->PembayaranModel->tambah_pembayaran($data_pembayaran);
 				redirect(base_url('pasien/konsultasi/jadwal'));
@@ -120,10 +116,43 @@ class Konsultasi extends CI_Controller
 			$foto_pembayaran = $this->upload->data('file_name');
 			$data_pembayaran = [
 				'foto_pembayaran' => $foto_pembayaran,
+				'status_bayar' 	  => 'Terbayar',
 			];
 
 			$this->PembayaranModel->update_pembayaran($id_pembayaran, $data_pembayaran);
 			redirect(base_url('pasien/konsultasi/jadwal'));
 		}
+	}
+
+	public function ubah_jadwal_cancel($id_konsultasi)
+	{
+		$data = [
+			'status' => 'Dibatalkan',
+		];
+		$this->KonsultasiModel->update_status($id_konsultasi, $data);
+		redirect(base_url('pasien/konsultasi/jadwal'));
+	}
+
+	public function ubah_jadwal_setuju($id_konsultasi)
+	{
+		$data = [
+			'status' => 'Menunggu',
+		];
+		$this->KonsultasiModel->update_status($id_konsultasi, $data);
+		redirect(base_url('pasien/konsultasi/jadwal'));
+	}
+
+	public function cetak_invoice($id_konsultasi)
+	{
+		$data['invoice'] = $this->KonsultasiModel->invoice($id_konsultasi)->row();
+		$this->load->view('pasien/pages/invoice', $data);
+	}
+
+	public function diagnosa($id_konsultasi)
+	{
+		$data['diagnosa'] = $this->KonsultasiModel->get_rekam_medis($id_konsultasi)->row();
+		$this->load->view('pasien/layouts/header');
+		$this->load->view('pasien/pages/rekam-medis', $data);
+		$this->load->view('pasien/layouts/footer');
 	}
 }

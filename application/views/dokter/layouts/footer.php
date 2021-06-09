@@ -31,6 +31,7 @@
 
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 

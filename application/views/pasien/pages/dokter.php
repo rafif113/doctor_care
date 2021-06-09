@@ -1,23 +1,12 @@
 <!-- Content -->
 <div class="main-content">
 	<!-- Page Header -->
-	<div class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="page-title">
-						<span>Our Doctors</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="content">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="section-header text-center">
-						<h3 class="header-title">Our Physician Lists</h3>
+						<h3 class="header-title">Dokter Kami</h3>
 						<div class="line"></div>
 					</div>
 				</div>
@@ -27,12 +16,12 @@
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4">
 						<div class="doctor-list">
 							<div class="doctor-inner">
-								<img class="img-fluid" alt="" src="<?= base_url('assets/pasien/') ?>img/doctor-06.jpg">
+								<img class="img-fluid" alt="" src="<?= base_url('uploads/profile/' . $data->foto) ?>">
 								<div class="doctor-details">
 									<div class="doctor-info">
 										<h4 class="doctor-name"><a href="doctor-details.html"><?= $data->nama_dokter ?></a></h4>
 										<p>
-											<span class="depart">Physical Therapist</span>
+											<span class="depart"><?= $data->keahlian ?></span>
 										</p>
 									</div>
 									<ul class="social-list">
@@ -50,18 +39,13 @@
 										</li>
 									</ul>
 									<div class="view-profie">
-										<a href="<?= base_url('pasien/dokter/detail_dokter/' . $data->id_dokter) ?>">View Profile</a>
+										<a href="<?= base_url('pasien/dokter/detail_dokter/' . $data->id_dokter) ?>">Detail Dokter</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				<?php	} ?>
-			</div>
-			<div class="row">
-				<div class="col-12 text-center">
-					<a href="#" class="btn btn-primary load-more">Load More</a>
-				</div>
 			</div>
 		</div>
 	</div>

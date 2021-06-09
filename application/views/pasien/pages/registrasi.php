@@ -13,9 +13,9 @@
 						<span class="form-text text-danger"><?= form_error('nama_pasien'); ?></span>
 					</div>
 					<div class="form-group">
-						<label>No Telepon</label>
-						<input type="text" name="no_telp" class="form-control" value="<?php echo set_value('no_telp') ?>">
-						<span class="form-text text-danger"><?= form_error('no_telp'); ?></span>
+						<label>Email</label>
+						<input type="email" name="email" class="form-control" value="<?php echo set_value('email') ?>">
+						<span class="form-text text-danger"><?= form_error('email'); ?></span>
 					</div>
 					<div class="form-group">
 						<label>Username</label>

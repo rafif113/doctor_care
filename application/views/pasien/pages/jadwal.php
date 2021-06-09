@@ -116,6 +116,7 @@
 										<a href="javascript:void(0)" data-toggle="modal" data-target="#detailKonsultasi<?= $data->id_konsultasi ?>">
 											<h6 class="text-primary">Link Konsultasi <i class="bi bi-caret-right-fill"></i></h6>
 										</a>
+										<a href="<?= base_url('pasien/konsultasi/cetak_invoice/' . $data->id_konsultasi) ?>" class="text-info">Lihat Invoice</a>
 										<!-- Modal Link Konsultasi -->
 										<div class="modal fade" id="detailKonsultasi<?= $data->id_konsultasi ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered" role="document">
@@ -133,7 +134,7 @@
 																<div class="card-body ">
 																	<div class="row">
 																		<div class="col-12 ">
-																			<h4 class="card-title "><b>Id Konsultasi : <?= $data->id_konsultasi ?></b></h4>
+																			<h4 class="card-title"><b>Id Konsultasi : <?= $data->id_konsultasi ?></b></h4>
 																		</div>
 																		<div class="col">
 																			<h6 class="card-subtitle mb-2 text-muted">
@@ -175,7 +176,7 @@
 										<div class="modal fade" id="ubahJadwal<?= $data->id_konsultasi ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered" role="document">
 												<div class="modal-content">
-													<?= form_open_multipart('pasien/konsultasi/ubah_jadwal', array('method' => 'POST')) ?>
+													<input type="hidden" name="id_konsultasi" value="<?= $data->id_konsultasi ?>">
 													<div class="modal-header">
 														<h5 class="modal-title" id="exampleModalLongTitle">Detail Konsultasi</h5>
 														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -201,11 +202,14 @@
 															</div>
 														</div>
 													</div>
-													<div class=" modal-footer">
-														<a href="" class="btn btn-danger">Tidak Setuju</a>
-														<button type="submit" class="btn btn-primary">Setuju</button>
+													<div class="modal-footer">
+														<a href="<?= base_url('pasien/konsultasi/ubah_jadwal_cancel/' . $data->id_konsultasi) ?>">
+															<button type="button" class="btn btn-danger">Tidak Setuju</button>
+														</a>
+														<a href="<?= base_url('pasien/konsultasi/ubah_jadwal_setuju/' . $data->id_konsultasi) ?>">
+															<button type="submit" class="btn btn-primary">Setuju</button>
+														</a>
 													</div>
-													<?= form_close() ?>
 												</div>
 											</div>
 										</div>
@@ -217,9 +221,10 @@
 										</a>
 									<?php break;
 									case "Selesai": ?>
-										<a href="">
+										<a href="<?= base_url('pasien/konsultasi/diagnosa/' . $data->id_konsultasi) ?>">
 											<h6 class="text-success">Hasil Diagnosa <i class="bi bi-caret-right-fill"></i></h6>
 										</a>
+										<a href="<?= base_url('pasien/konsultasi/cetak_invoice/' . $data->id_konsultasi) ?>" class="text-info">Lihat Invoice</a>
 								<?php break;
 								endswitch; ?>
 							</div>

@@ -11,10 +11,27 @@ class JadwalModel extends CI_Model
 
 	public function get_konsultasi()
 	{
-		$this->db->select('nama_pasien, meet, konsultasi.id_konsultasi, keluhan, foto_keluhan, tanggal, jam, tanggal_reschedule, jam_reschedule, konsultasi.status,');
+		$this->db->select('nama_pasien, meet, konsultasi.id_konsultasi, keluhan, foto_keluhan, tanggal, jam, tanggal_reschedule, jam_reschedule, 
+		konsultasi.status,foto_pembayaran,kode_bayar,status_bayar');
 		$this->db->from('konsultasi');
 		$this->db->join('pasien', 'pasien.id_pasien = konsultasi.id_pasien');
+		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = konsultasi.id_konsultasi');
 		$query = $this->db->get();
+		return $query;
+	}
+
+	public function get_dokter($id_konsultasi)
+	{
+		$this->db->select('id_dokter, id_pasien');
+		$this->db->from('konsultasi');
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function get_pembayaran()
+	{
+		$query = $this->db->get('pembayaran');
 		return $query;
 	}
 

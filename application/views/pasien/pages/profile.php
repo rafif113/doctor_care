@@ -1,116 +1,101 @@
-<!-- Start main-content -->
-<div class="main-content">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- Section: inner-header -->
-	<?php
-	$data['judul_inner'] = 'Profile';
-	$this->load->view('pasien/layouts/inner-header', $data);
-	?>
 
-	<!-- Section: Doctor Details -->
-	<section class="">
-		<div class="container">
-			<div class="section-content">
-				<div class="row">
-					<div class="col-sx-12 col-sm-4 col-md-4">
-						<div class="doctor-thumb">
-							<img src="images/about/profile1.html" alt="">
-						</div>
-						<div class="info p-20 bg-black-333">
-							<h4 class="text-uppercase text-white"><?= $profile->nama_pasien ?></h4>
-							<p class="text-gray-silver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus.</p>
-							<ul class="list angle-double-right m-0">
-								<li class="mt-0 text-gray-silver"><strong class="text-gray-lighter">Email</strong><br> smith@yourdomain.com</li>
-								<li class="text-gray-silver"><strong class="text-gray-lighter">Web</strong><br> www.yourdomain.com</li>
-							</ul>
-							<ul class="styled-icons icon-gray icon-circled icon-sm mt-15 mb-15">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-skype"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-							<a class="btn btn-info btn-flat mt-10 mb-sm-30" href="#">Edit Profile</a>
-							<a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="<?= base_url('pasien/auth/logout') ?>">Logout</a>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-8 col-md-8">
-						<form name="editprofile-form" method="post">
-							<div class="icon-box mb-0 p-0">
-								<a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
-									<i class="fa fa-user"></i>
-								</a>
-								<h4 class="text-gray pt-10 mt-0 mb-30">Edit Profile</h4>
-							</div>
-							<hr>
-							<p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label>Name</label>
-									<input name="form_name" class="form-control" type="text">
-								</div>
-								<div class="form-group col-md-6">
-									<label>Email</label>
-									<input name="form_email" class="form-control" type="email">
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label>Phone</label>
-									<input name="form_phone" class="form-control" type="text">
-								</div>
-								<div class="form-group col-md-6">
-									<label>Date of Birth</label>
-									<input name="form_dob" class="form-control" type="email">
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label>Address</label>
-									<textarea name="form_address" class="form-control" cols="20" rows="5"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
-							</div>
-						</form>
+<div class="container bootstrap snippet mt-5 mb-5">
 
-						<hr class="mt-70 mb-70">
-
-						<form name="editprofile-form" method="post">
-							<div class="icon-box mb-0 p-0">
-								<a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
-									<i class="fa fa-key"></i>
-								</a>
-								<h4 class="text-gray pt-10 mt-0 mb-30">Change Password</h4>
-							</div>
-							<hr>
-							<p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
-
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label>Choose Password</label>
-									<input name="form_choose_password" class="form-control" type="text">
-								</div>
-								<div class="form-group col-md-6">
-									<label>Re-enter Password</label>
-									<input name="form_re_enter_password" class="form-control" type="text">
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label>Old Password</label>
-									<input name="form_old_password" class="form-control" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
-							</div>
-						</form>
-					</div>
-				</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<!--left col-->
+			<div class="text-center">
+				<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+				<h6>Upload Foto...</h6>
+				<input type="file" class="text-center center-block file-upload">
 			</div>
+			</hr><br>
 		</div>
-	</section>
+		<!--/col-3-->
+		<div class="col-sm-9">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+			</ul>
 
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="home">
+					<hr>
+					<form class="form" action="##" method="post" id="registrationForm">
+						<div class="form-group">
+							<div class="col-xs-6 mt-2">
+								<label for="first_name">
+									<h5>Nama Pasien</h5>
+								</label>
+								<input type="text" class="form-control" name="nama_pasien" placeholder="Nama Pasien">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-6 mt-2">
+								<label for="last_name">
+									<h5>Email</h5>
+								</label>
+								<input type="text" class="form-control" name="email" placeholder="Email" title="enter your last name if any.">
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<div class="col-xs-6">
+								<label for="phone">
+									<h5>Jenis Kelamin</h5>
+								</label>
+								<input type="text" class="form-control" name="jenis_kelamin" placeholder="enter phone" title="enter your phone number if any.">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-6">
+								<label for="mobile">
+									<h5>Alamat</h5>
+								</label>
+								<input type="text" class="form-control" name="alamat" placeholder="Alamat" title="enter your mobile number if any.">
+							</div>
+						</div>
+						<div class="form-group">
+
+							<div class="col-xs-6">
+								<label for="email">
+									<h5>No Telepon</h5>
+								</label>
+								<input type="email" class="form-control" name="no_telp" placeholder="you@email.com" title="enter your email.">
+							</div>
+						</div>
+						<div class="form-group">
+
+							<div class="col-xs-6">
+								<label for="email">
+									<h5>Tanggal Lahir</h5>
+								</label>
+								<input type="email" class="form-control" placeholder="somewhere">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<br>
+								<button class="btn btn-md btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Simpan</button>
+							</div>
+						</div>
+					</form>
+
+					<hr>
+
+				</div>
+
+
+			</div>
+			<!--/tab-pane-->
+		</div>
+		<!--/tab-content-->
+
+	</div>
+	<!--/col-9-->
 </div>
-<!-- end main-content -->
+<!--/row-->

@@ -33,4 +33,26 @@ class KonsultasiModel extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function update_status($id_konsultasi, $data)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		return $this->db->update('konsultasi', $data);
+	}
+	public function invoice($id_konsultasi)
+	{
+		$this->db->select('tanggal, meet, konsultasi.id_dokter, keluhan, kode_bayar, nominal, nama_dokter, nama_pasien, pasien.email, pasien.alamat, pasien.no_telp');
+		$this->db->from('konsultasi');
+		$this->db->join('dokter', 'dokter.id_dokter = konsultasi.id_dokter');
+		$this->db->join('pasien', 'pasien.id_pasien = konsultasi.id_pasien');
+		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = konsultasi.id_konsultasi');
+		$this->db->where('konsultasi.id_konsultasi', $id_konsultasi);
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function get_rekam_medis($id_konsultasi)
+	{
+		return $this->db->get_where('rekam_medis', ['id_konsultasi' => $id_konsultasi]);
+	}
 }

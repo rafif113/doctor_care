@@ -70,7 +70,7 @@ class Auth extends CI_Controller
 		]);
 		$this->form_validation->set_rules('password2', 'Confrim Password', 'required|trim|matches[password]');
 		$this->form_validation->set_rules('nama_pasien', 'Nama Pasien', 'required|trim');
-		$this->form_validation->set_rules('no_telp', 'No Telepon', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
 
 		if ($this->form_validation->run() == false) {
 			$this->registrasi();
@@ -78,14 +78,14 @@ class Auth extends CI_Controller
 			$id_pasien 	 = $this->AuthModel->id_pasien();
 			$username    = $this->input->post('username', true);
 			$password  	 = $this->input->post('password');
-			$no_telp     = $this->input->post('no_telp', true);
+			$email       = $this->input->post('email', true);
 			$nama_pasien = $this->input->post('nama_pasien', true);
 
 			$data = [
 				'id_pasien'   => $id_pasien,
 				'username' 	  => htmlspecialchars($username),
 				'password' 	  => password_hash($password, PASSWORD_DEFAULT),
-				'no_telp'     => $no_telp,
+				'email'       => $email,
 				'nama_pasien' => htmlspecialchars($nama_pasien),
 			];
 			$this->AuthModel->tambah_pasien($data);

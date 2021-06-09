@@ -36,7 +36,7 @@
 					<h1 class="h2 mt-5">Anda belum mempunyai riwayat konsultasi</h1>
 					<p>Sebelum pergi kehalaman riwayat konsultasi, silahkan pergi kehalaman penjadwalan atau daftar konsultasi pada bagian konsultasi atau klik tomobol dibawah ini..</p>
 				</div>
-				<a class="btn btn-primary btn-wide" href="<?= base_url('pasien/konsultasi') ?>">Buat Jadwal</a>
+				<a class="btn btn-primary btn-wide" href="<?= base_url('pasien/dokter') ?>">Buat Jadwal</a>
 			</div>
 		</div>
 	</div>

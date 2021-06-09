@@ -1,17 +1,6 @@
 <!-- Content -->
 <div class="main-content">
 	<!-- Page Header -->
-	<div class="page-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="page-title">
-						<span>Dr. Albert Sandoval MBBS, FRCS</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="content">
 		<div class="container">
 			<div class="row">
@@ -23,7 +12,7 @@
 								<div class="doctor-info">
 									<h4 class="doctor-name"><?= $dokter->nama_dokter ?></h4>
 									<p>
-										<span class="depart">Physical Therapist</span>
+										<span class="depart"><?= $dokter->keahlian ?></span>
 									</p>
 								</div>
 								<ul class="social-list">
@@ -41,7 +30,7 @@
 									</li>
 								</ul>
 								<div class="book-appointment">
-									<a href="<?= base_url('pasien/konsultasi') ?>">Buat Janji</a>
+									<a href="<?= base_url('pasien/konsultasi/index/' . $dokter->id_dokter) ?>">Buat Janji</a>
 								</div>
 							</div>
 						</div>
@@ -49,11 +38,11 @@
 				</div>
 				<div class="col-12 col-md-8 col-lg-8 col-xl-8">
 					<div class="about-doctor">
-						<h3 class="sub-title">About the Doctor</h3>
+						<h3 class="sub-title">Tentang Dokter</h3>
 						<p><?= $dokter->pengalaman_kerja ?>.</p>
 					</div>
 					<div class="experience-widget">
-						<h3 class="sub-title">Experience</h3>
+						<h3 class="sub-title">Pengalaman</h3>
 						<div class="experience-box">
 							<ul class="experience-list">
 								<li>

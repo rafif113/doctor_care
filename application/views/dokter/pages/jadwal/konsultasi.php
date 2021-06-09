@@ -51,24 +51,21 @@
 										<div class="modal fade" id="fotoKeluhan<?= $data->id_konsultasi ?>" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered" role="document">
 												<div class="modal-content">
-													<form action="<?= base_url('dokter/jadwal/proses_tambah_jadwal') ?>" method="POST">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalLabel">Foto Keluhan</h5>
-															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															</button>
-														</div>
-														<div class="modal-body">
-															<div class="row">
-																<div class="col-md-12 mx-auto">
-																	<img class="img-thumbnail" src="<?= base_url('uploads/keluhan/' . $data->foto_keluhan) ?>" alt="">
-																</div>
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Foto Keluhan</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														</button>
+													</div>
+													<div class="modal-body">
+														<div class="row">
+															<div class="col-md-12 mx-auto">
+																<img class="img-thumbnail" src="<?= base_url('uploads/keluhan/' . $data->foto_keluhan) ?>" alt="">
 															</div>
 														</div>
-														<div class="modal-footer">
-															<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Close</button>
-															<button type="submit" class="btn btn-primary">Save</button>
-														</div>
-													</form>
+													</div>
+													<div class="modal-footer">
+														<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Tutup</button>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -118,13 +115,13 @@
 																				<div class="col-md-6">
 																					<div class="form-group">
 																						<label for="website1">Tanggal Reschedule</label>
-																						<input id="basicFlatpickr" name="tanggal_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Select Date..">
+																						<input id="myDate" name="tanggal_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Tanggal..">
 																					</div>
 																				</div>
 																				<div class="col-md-6">
 																					<div class="form-group">
 																						<label for="website2">Jam Reschedule</label>
-																						<input id="timeFlatpickr" name="jam_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Select Date..">
+																						<input id="myID" data-enable-time="true" name="jam_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Jam..">
 																					</div>
 																				</div>
 																			</div>
@@ -214,13 +211,15 @@
 												</button>
 											<?php break;
 											case "Selesai": ?>
-												<button class="btn btn-success btn-sm">Info Diagnosa
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-														<circle cx="12" cy="12" r="10"></circle>
-														<line x1="12" y1="16" x2="12" y2="12"></line>
-														<line x1="12" y1="8" x2="12.01" y2="8"></line>
-													</svg>
-												</button>
+												<a href="<?= base_url('dokter/diagnosa/input_diagnosa/' . $data->id_konsultasi) ?>">
+													<button class="btn btn-success btn-sm">Info Diagnosa
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+															<circle cx="12" cy="12" r="10"></circle>
+															<line x1="12" y1="16" x2="12" y2="12"></line>
+															<line x1="12" y1="8" x2="12.01" y2="8"></line>
+														</svg>
+													</button>
+												</a>
 										<?php break;
 										endswitch; ?>
 									</td>
@@ -249,8 +248,15 @@
 	</div>
 	<script src="<?= base_url('assets/admin/') ?>plugins/flatpickr/flatpickr.js"></script>
 	<script src="<?= base_url('assets/admin/') ?>plugins/flatpickr/custom-flatpickr.js"></script>
+
 	<script>
-		var f4 = flatpickr(document.getElementById('timeFlatpickr'), {
+		flatpickr("#myDate", {
+			enableTime: true,
+			dateFormat: "Y-m-d",
+		});
+	</script>
+	<script>
+		flatpickr("#myID", {
 			enableTime: true,
 			noCalendar: true,
 			dateFormat: "H:i",

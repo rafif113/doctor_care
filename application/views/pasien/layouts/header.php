@@ -57,7 +57,7 @@
 										<a href="<?= base_url('pasien/dokter') ?>" class="nav-link">Dokter</a>
 									</li>
 									<li class="nav-item">
-										<a class="btn btn-primary appoint-btn nav-link" href="<?= base_url('pasien/konsultasi') ?>">Buat Jadwal</a>
+										<a class="btn btn-primary appoint-btn nav-link" href="<?= base_url('pasien/dokter') ?>">Buat Jadwal</a>
 									</li>
 									<style>
 										.show {
