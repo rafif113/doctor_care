@@ -22,6 +22,7 @@
 										<h4 class="doctor-name"><a href="doctor-details.html"><?= $data->nama_dokter ?></a></h4>
 										<p>
 											<span class="depart"><?= $data->keahlian ?></span>
+											<span class="depart">(Rp. <?= $data->harga ?>)</span>
 										</p>
 									</div>
 									<ul class="social-list">

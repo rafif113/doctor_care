@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Bulan Mei 2021 pada 12.25
+-- Waktu pembuatan: 23 Jun 2021 pada 16.54
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.6
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama_admin`, `username`, `password`) VALUES
-('ADM-001', 'admin', 'admin', '$2y$10$NiJPPfR4ijYRsTODgYD8xO5MEHHaaQ3IGawsc7/Ls87.gNbGO8oGO');
+('ADM-001', 'admin', 'admin', '$2y$10$fjV0nL9xgMG7KhhBiuqQFuIW3CDpoA8X/zAnq5.e8Ct5ojt/oZ4vC');
 
 -- --------------------------------------------------------
 
@@ -51,10 +51,15 @@ CREATE TABLE `admin_apotek` (
   `id_admin_apotek` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_admin` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tgl_centang` date DEFAULT NULL,
-  `jam_centang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `admin_apotek`
+--
+
+INSERT INTO `admin_apotek` (`id_admin_apotek`, `nama_admin`, `username`, `password`) VALUES
+('ADMP-001', 'Admin Apotek', 'apotek', '$2y$10$Aeur3NHJQU7/OZysDKGt8ejtLIKqeOho531TTza0RlPNO1x7Iz9fS');
 
 -- --------------------------------------------------------
 
@@ -74,6 +79,7 @@ CREATE TABLE `dokter` (
   `keahlian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pengalaman_kerja` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
   `status` enum('Aktif','Tidak aktif') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -81,11 +87,10 @@ CREATE TABLE `dokter` (
 -- Dumping data untuk tabel `dokter`
 --
 
-INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `email`, `username`, `password`, `alamat`, `no_telp`, `STR`, `keahlian`, `foto`, `pengalaman_kerja`, `status`) VALUES
-('DR-001', 'Haga', '', 'haga', '$2y$10$aXNGMj/a8tZKz.DwyNWgvuQWKMJThtvNPl.nFIZMzQ0KQnizNFRTO', NULL, NULL, NULL, 'Dokter Gigi', NULL, NULL, 'Aktif'),
-('DR-002', 'Alvin', '', 'alvin', '$2y$10$858wM/7dLJ1KFnKvI4WJquqLcQkkMqC9jfjHI3k8K5L8yE.loe.Di', NULL, NULL, NULL, 'Dokter Umum', NULL, NULL, 'Aktif'),
-('DR-003', 'Juda', '', 'juda', '$2y$10$MRu8veswY90wy0osz7c9Su69jeYN9fD5C6hKFTVQKRllgGxcvDtui', NULL, NULL, NULL, 'Dokter Bedah', NULL, NULL, 'Aktif'),
-('DR-004', 'Mela', NULL, 'mela', '$2y$10$FZapa/Q/R19KlUua5WElveZjp96AKIyZFvmHJcLMbxC8zmleC4c7q', NULL, NULL, NULL, NULL, NULL, NULL, 'Aktif');
+INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `email`, `username`, `password`, `alamat`, `no_telp`, `STR`, `keahlian`, `foto`, `pengalaman_kerja`, `harga`, `status`) VALUES
+('DR-001', 'Dr. Alvin Sutapa', 'alvin@gmail.com', 'alvin', '$2y$10$7fFTHBjVG1szvQLqs.Ef6.z8h/ekVvObWCSnTeEyGZfTMgm7k8sm2', NULL, '082116097045', '12231312', 'Spesialis Bulu Mata', 'doctor-011.jpg', 'Banyak Sekali', 70000, 'Aktif'),
+('DR-002', 'Dr Haga sutarmin', 'haga@mail.com', 'haga', '$2y$10$fEPINA2Fo.mQnJkrfzAzs.pyZ7lzuLUFGHOLdr5tM2Mxkl8hyAKLS', NULL, '08177736192', '12434', 'Spesialis Muka', 'doctor-09.jpg', 'Banyak Sekali', 55000, 'Aktif'),
+('DR-003', 'Dr Juda Angkasa', 'juda@gmail.com', 'juda', '$2y$10$8L9IESbFSw5CYoJaA3Vj7ODcmFmrmqr8yiwXhn.yGwBk1ATBzGnIu', NULL, '0812217419120', '12499', 'Spesialis Hidung', 'doctor-041.jpg', 'Banyak Sekali', 30000, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -106,9 +111,10 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`id_jadwal`, `tanggal`, `jam_mulai`, `jam_berakhir`, `id_dokter`) VALUES
-('JDW-001', '2021-05-20', '09:45', '16:45', 'DR-001'),
-('JDW-002', '2021-05-24', '09:45', '16:45', 'DR-003'),
-('JDW-003', '2021-05-31', '09:45', '16:45', 'DR-004');
+('JDW-001', '2021-06-24', '09:45', '16:45', 'DR-001'),
+('JDW-002', '2021-06-25', '09:45', '16:45', 'DR-001'),
+('JDW-003', '2021-06-25', '13:45', '16:45', 'DR-003'),
+('JDW-004', '2021-07-01', '09:45', '16:45', 'DR-002');
 
 -- --------------------------------------------------------
 
@@ -135,12 +141,7 @@ CREATE TABLE `konsultasi` (
 --
 
 INSERT INTO `konsultasi` (`id_konsultasi`, `tanggal`, `jam`, `keluhan`, `foto_keluhan`, `meet`, `status`, `tanggal_reschedule`, `jam_reschedule`, `id_pasien`, `id_dokter`) VALUES
-('KST-001', '2021-05-28', '18:00', 'Sakit lambung mual mual ', 'create_event.jpg', 'https://meet.google.com/ttl-xkbd-wld', 'Menunggu', '2021-05-25', '11:45', 'PSN-001', 'DR-003'),
-('KST-002', '2021-05-21', '12:00', 'Sakit pinggang', 'video_call.jpg', 'https://meet.google.com/rhl-xpia-bmv', 'Ubah jadwal', '2021-05-31', '12:45', 'PSN-001', 'DR-001'),
-('KST-003', '2021-05-27', '18:00', 'pen sakit', 'video_call1.jpg', 'https://meet.google.com/xsm-hjfi-ula', 'Disetujui', NULL, NULL, 'PSN-002', 'DR-003'),
-('KST-004', '2021-05-28', '15:00', 'Sakit mag', 'video_call2.jpg', 'https://meet.google.com/pzo-qjtm-ftn', 'Disetujui', NULL, NULL, 'PSN-003', 'DR-004'),
-('KST-005', '2021-05-28', '11:00', 'Sakit perut', 'video_call3.jpg', 'https://meet.google.com/ubt-efos-ngu', 'Selesai', '2021-05-29', '09:45', 'PSN-003', 'DR-004'),
-('KST-006', '2021-05-31', '11:00', 'sakit badan', 'video_call4.jpg', 'https://meet.google.com/hqk-uyrf-fnq', 'Disetujui', NULL, NULL, 'PSN-003', 'DR-004');
+('KST-001', '2021-06-24', '13:00', 'Sakit hidung', 'example2.jpg', 'https://apps.google.com/meet/', 'Selesai', NULL, NULL, 'PSN-001', 'DR-001');
 
 -- --------------------------------------------------------
 
@@ -179,8 +180,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `obat` (
   `id_obat` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_obat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `nama_obat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `merk_obat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `merk_obat`) VALUES
+('OBT-001', 'Obat sunscreen', 'Nivea');
 
 -- --------------------------------------------------------
 
@@ -196,6 +205,7 @@ CREATE TABLE `pasien` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jenis_kelamin` enum('Laki-laki','Perempuan') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_ktp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `no_telp` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL
@@ -205,10 +215,8 @@ CREATE TABLE `pasien` (
 -- Dumping data untuk tabel `pasien`
 --
 
-INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `email`, `username`, `password`, `jenis_kelamin`, `alamat`, `foto`, `no_telp`, `tgl_lahir`) VALUES
-('PSN-001', 'Rafif Yusuf Avandy', 'rafifyusuf@gmail.com', 'rafifyusuf', '$2y$10$MYruthNTxohkUiQ2ThXG2.CvyEp/VnsLSCTxDAUvWdLeau3O4YiPO', NULL, NULL, NULL, '082116097045', NULL),
-('PSN-002', 'Alvin', NULL, 'alvinpasien', '$2y$10$HGvIhX45evgmovSK6yXYcezMA41bBpVWz5yOOXnRbmlQ6vKMl6pxG', NULL, NULL, NULL, '08211609704', NULL),
-('PSN-003', 'haga', 'hagaibnuhakam@gmail.com', 'haga', '$2y$10$E05qHneT9b1l5CZFd.bk4O13CjRf/./Uy0jaG4ctM8dUwzzjnjwFi', NULL, NULL, NULL, '0821160821028', NULL);
+INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `email`, `username`, `password`, `jenis_kelamin`, `alamat`, `no_ktp`, `foto`, `no_telp`, `tgl_lahir`) VALUES
+('PSN-001', 'stephen hawkins', 'stephen@gmail.com', 'stephen', '$2y$10$4PtDH8QR2kcuv6wvBxgdTuXhIQy10fIITkA8BMBi8bFW8z2tZlASu', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,6 +230,10 @@ CREATE TABLE `pembayaran` (
   `nominal` int(11) NOT NULL,
   `foto_pembayaran` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_bayar` enum('Terbayar','Belum dibayar') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Belum dibayar',
+  `tgl_pembayaran` date DEFAULT NULL,
+  `tgl_validasi` date DEFAULT NULL,
+  `jam_validasi` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_admin` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_konsultasi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -229,13 +241,8 @@ CREATE TABLE `pembayaran` (
 -- Dumping data untuk tabel `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `kode_bayar`, `nominal`, `foto_pembayaran`, `status_bayar`, `id_konsultasi`) VALUES
-('PMB-001', '888886074392', 50000, NULL, 'Belum dibayar', 'KST-001'),
-('PMB-002', '888881042935', 80000, 'video_call.jpg', 'Belum dibayar', 'KST-002'),
-('PMB-003', '888872180356', 50000, 'create_event.jpg', 'Belum dibayar', 'KST-003'),
-('PMB-004', '888896012837', 50000, 'create_event1.jpg', 'Belum dibayar', 'KST-004'),
-('PMB-005', '888826958071', 50000, 'video_call1.jpg', 'Belum dibayar', 'KST-005'),
-('PMB-006', '888823698705', 50000, NULL, 'Belum dibayar', 'KST-006');
+INSERT INTO `pembayaran` (`id_pembayaran`, `kode_bayar`, `nominal`, `foto_pembayaran`, `status_bayar`, `tgl_pembayaran`, `tgl_validasi`, `jam_validasi`, `id_admin`, `id_konsultasi`) VALUES
+('PMB-001', '888850267184', 70000, 'doctor-01.jpg', 'Terbayar', NULL, NULL, NULL, NULL, 'KST-001');
 
 -- --------------------------------------------------------
 
@@ -245,15 +252,23 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `kode_bayar`, `nominal`, `foto_pembay
 
 CREATE TABLE `rekam_medis` (
   `no_record` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `no_rekam_medis` int(11) NOT NULL,
-  `tanggal` date NOT NULL,
-  `jam` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `diagnosa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `catatan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto_pemeriksaan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_dokter` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_pasien` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+  `no_rekam_medis` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `jam` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `diagnosa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `catatan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto_pemeriksaan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_dokter` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_pasien` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_konsultasi` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `rekam_medis`
+--
+
+INSERT INTO `rekam_medis` (`no_record`, `no_rekam_medis`, `tanggal`, `jam`, `diagnosa`, `catatan`, `foto_pemeriksaan`, `id_dokter`, `id_pasien`, `id_konsultasi`) VALUES
+('RC-001', 880866, '2021-07-28', '12:00', 'Sakit ringan', 'Alhamdulillah', 'doctor-01.jpg', 'DR-001', 'PSN-001', 'KST-001');
 
 -- --------------------------------------------------------
 
@@ -268,6 +283,13 @@ CREATE TABLE `resep` (
   `dosis` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `resep`
+--
+
+INSERT INTO `resep` (`id_resep`, `cara_pakai`, `kode_obat`, `dosis`) VALUES
+('RSP-001', 'Ulaskan merata', '121212', '3 x 1');
+
 -- --------------------------------------------------------
 
 --
@@ -276,6 +298,8 @@ CREATE TABLE `resep` (
 
 CREATE TABLE `resep_obat` (
   `id_resep_obat` int(10) UNSIGNED NOT NULL,
+  `tgl_centang` date DEFAULT NULL,
+  `jam_centang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_obat` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_resep` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_pasien` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -341,6 +365,7 @@ ALTER TABLE `pasien`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
+  ADD KEY `pembayaran_id_admin_foreign` (`id_admin`),
   ADD KEY `pembayaran_id_konsultasi_foreign` (`id_konsultasi`);
 
 --
@@ -349,7 +374,8 @@ ALTER TABLE `pembayaran`
 ALTER TABLE `rekam_medis`
   ADD PRIMARY KEY (`no_record`),
   ADD KEY `rekam_medis_id_dokter_foreign` (`id_dokter`),
-  ADD KEY `rekam_medis_id_pasien_foreign` (`id_pasien`);
+  ADD KEY `rekam_medis_id_pasien_foreign` (`id_pasien`),
+  ADD KEY `rekam_medis_id_konsultasi_foreign` (`id_konsultasi`);
 
 --
 -- Indeks untuk tabel `resep`
@@ -403,6 +429,7 @@ ALTER TABLE `konsultasi`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_id_admin_foreign` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pembayaran_id_konsultasi_foreign` FOREIGN KEY (`id_konsultasi`) REFERENCES `konsultasi` (`id_konsultasi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -410,6 +437,7 @@ ALTER TABLE `pembayaran`
 --
 ALTER TABLE `rekam_medis`
   ADD CONSTRAINT `rekam_medis_id_dokter_foreign` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rekam_medis_id_konsultasi_foreign` FOREIGN KEY (`id_konsultasi`) REFERENCES `konsultasi` (`id_konsultasi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rekam_medis_id_pasien_foreign` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

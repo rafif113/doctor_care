@@ -7,12 +7,9 @@
 				<div class="col-12 col-md-4 col-lg-4 col-xl-4 doctor-sidebar">
 					<div class="doctor-list doctor-view">
 						<div class="doctor-inner">
-							<img class="img-fluid" alt="" src="<?= base_url('uploads/diagnosa/' . $diagnosa->foto_pemeriksaan) ?>">
-							<!-- <div class="doctor-details">
-								<div class="book-appointment">
-									<a href="<?= base_url('pasien/konsultasi/index/' . $diagnosa->no_record) ?>">Download Foto</a>
-								</div>
-							</div> -->
+							<a href="<?= base_url('pasien/konsultasi/download_diagnosa/' . $diagnosa->no_record) ?>">
+								<img class="img-fluid" alt="" src="<?= base_url('uploads/diagnosa/' . $diagnosa->foto_pemeriksaan) ?>">
+							</a>
 						</div>
 					</div>
 					<div class="working-hours mt-3">

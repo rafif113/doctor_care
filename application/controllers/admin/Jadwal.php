@@ -17,7 +17,7 @@ class Jadwal extends CI_Controller
 
 	public function index()
 	{
-		$data['jadwal'] = $this->JadwalModel->get_single_jadwal()->result();
+		$data['jadwal'] = $this->JadwalModel->get_jadwal()->result();
 		$this->load->view('admin/layouts/header');
 		$this->load->view('admin/pages/jadwal/jadwal', $data);
 		$this->load->view('admin/layouts/footer');

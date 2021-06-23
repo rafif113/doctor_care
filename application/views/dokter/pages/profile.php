@@ -66,8 +66,36 @@ if (isset($_SESSION['gagal'])) {
 															</div>
 															<div class="col-sm-6">
 																<div class="form-group">
+																	<label for="profession">Email</label>
+																	<input type="text" name="email" class="form-control mb-4" placeholder="Email" value="<?= $profile->email ?>">
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label for="profession">Harga</label>
+																	<input type="number" name="harga" class="form-control mb-4" placeholder="Harga" value="<?= $profile->harga ?>">
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="form-group">
 																	<label for="profession">Pengalaman Kerja</label>
 																	<input type="text" name="pengalaman_kerja" class="form-control mb-4" placeholder="Pengalaman Kerja" value="<?= $profile->pengalaman_kerja ?>">
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label for="profession">STR</label>
+																	<input type="number" name="str" class="form-control mb-4" placeholder="STR" value="<?= $profile->STR ?>">
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="form-group">
+																	<label for="profession">Keahlian</label>
+																	<input type="text" name="keahlian" class="form-control mb-4" placeholder="Keahlian" value="<?= $profile->keahlian ?>">
 																</div>
 															</div>
 														</div>
@@ -96,7 +124,7 @@ if (isset($_SESSION['gagal'])) {
 							</form>
 						</div>
 
-						<div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+						<!-- <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
 							<form id="contact" class="section contact">
 								<div class="info">
 									<h5 class="">Ubah Password</h5>
@@ -121,7 +149,7 @@ if (isset($_SESSION['gagal'])) {
 									</div>
 								</div>
 							</form>
-						</div>
+						</div> -->
 
 					</div>
 				</div>

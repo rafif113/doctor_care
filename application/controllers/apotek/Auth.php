@@ -7,27 +7,23 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('pasien/AuthModel', 'AuthModel');
+		$this->load->model('apotek/AuthModel', 'AuthModel');
 	}
 
 	public function index()
 	{
-		$this->load->view('pasien/layouts/header');
-		$this->load->view('pasien/pages/login');
-		$this->load->view('pasien/layouts/footer');
+		$this->load->view('apotek/pages/auth/login');
 	}
 
 	public function registrasi()
 	{
-		$this->load->view('pasien/layouts/header');
-		$this->load->view('pasien/pages/registrasi');
-		$this->load->view('pasien/layouts/footer');
+		$this->load->view('apotek/pages/auth/registrasi');
 	}
 
 	public function proses_login()
 	{
 		if ($this->session->userdata('username')) {
-			redirect('pasien');
+			redirect('apotek');
 		}
 
 		$this->form_validation->set_rules('username', 'Username', 'required');
@@ -38,73 +34,62 @@ class Auth extends CI_Controller
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			$user = $this->db->get_where('pasien', ['username' => $username])->row_array();
+			$user = $this->db->get_where('admin_apotek', ['username' => $username])->row_array();
 			if ($user) {
 				if (password_verify($password, $user['password'])) {
 					$data = [
-						'id_pasien'   => $user['id_pasien'],
+						'id_admin_apotek'   => $user['id_admin_apotek'],
 						'username'    => $user['username'],
-						'nama_pasien' => $user['nama_pasien']
+						'nama_admin' => $user['nama_admin'],
 					];
 					$this->session->set_userdata($data);
-					redirect('pasien');
+					redirect('apotek');
 				} else {
 					$this->session->set_flashdata('flash', 'Password Salah');
-					redirect('pasien/auth');
+					redirect('apotek/auth');
 				}
 			} else {
 				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
-				redirect('pasien/auth');
+				redirect('apotek/auth');
 			}
 		}
 	}
 
-	public function password_check($str)
-	{
-		if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str)) {
-			return TRUE;
-		}
-		return FALSE;
-	}
-
 	public function proses_registrasi()
 	{
-		$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[pasien.username]', [
+		$this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[admin.username]', [
 			'is_unique' => 'Username yang anda pakai telah terdaftar!'
 		]);
-		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|alpha_numeric|callback_password_check', [
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [
 			'matches' => 'Password tidak cocok!',
-			'min_length' => 'Password terlalu pendek, minimal 8 karakter!',
-			'password_check' => 'Password harus berisi angka dan huruf kapital!'
+			'min_length' => 'Password terlalu pendek!'
 		]);
 		$this->form_validation->set_rules('password2', 'Confrim Password', 'required|trim|matches[password]');
-		$this->form_validation->set_rules('nama_pasien', 'Nama Pasien', 'required|trim');
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('nama_admin', 'Nama admin', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
 			$this->registrasi();
 		} else {
-			$id_pasien 	 = $this->AuthModel->id_pasien();
+			$id_admin_apotek 	 = $this->AuthModel->id_admin_apotek();
 			$username    = $this->input->post('username', true);
 			$password  	 = $this->input->post('password');
-			$email       = $this->input->post('email', true);
-			$nama_pasien = $this->input->post('nama_pasien', true);
+			$nama_admin  = $this->input->post('nama_admin', true);
 
 			$data = [
-				'id_pasien'   => $id_pasien,
+				'id_admin_apotek'   => $id_admin_apotek,
 				'username' 	  => htmlspecialchars($username),
 				'password' 	  => password_hash($password, PASSWORD_DEFAULT),
-				'email'       => $email,
-				'nama_pasien' => htmlspecialchars($nama_pasien),
+				'nama_admin' => htmlspecialchars($nama_admin),
 			];
-			$this->AuthModel->tambah_pasien($data);
+			$this->AuthModel->tambah_admin_apotek($data);
 			$this->session->set_flashdata('flash', 'Akun berhasil dibuat');
-			redirect(base_url('pasien/auth'));
+			redirect(base_url('apotek/auth'));
 		}
 	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url('pasien'));
+		redirect(base_url('apotek/auth'));
 	}
 }

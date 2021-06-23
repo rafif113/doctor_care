@@ -33,7 +33,7 @@
 							<?php $no = 1;
 							foreach ($jadwal as $data) { ?>
 								<tr>
-									<td><?= $no++ ?></td>
+									<td><?= date_indo($data->tanggal) ?></td>
 									<td><?= date_indo($data->tanggal) ?></td>
 									<td><?= $data->jam_mulai ?> WIB</td>
 									<td><?= $data->jam_berakhir ?> WIB</td>
@@ -43,10 +43,9 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>No</th>
 								<th>Tanggal</th>
 								<th>Jam</th>
-								<th>Jam Berakhir</th>
+								<th>Salary</th>
 							</tr>
 						</tfoot>
 					</table>

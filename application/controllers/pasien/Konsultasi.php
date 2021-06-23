@@ -75,7 +75,7 @@ class Konsultasi extends CI_Controller
 
 				$id_pembayaran = $this->PembayaranModel->id_pembayaran();
 				$kode_bayar    = 8888 . random_string('numeric', 8);
-				$nominal 	   = 80000;
+				$nominal 	   = $this->input->post('nominal');
 				$data_pembayaran = [
 					'id_pembayaran' => $id_pembayaran,
 					'kode_bayar'    => $kode_bayar,
@@ -154,5 +154,13 @@ class Konsultasi extends CI_Controller
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/rekam-medis', $data);
 		$this->load->view('pasien/layouts/footer');
+	}
+
+	public function download_diagnosa($no_record)
+	{
+		$this->load->helper('download');
+		$fileinfo = $this->KonsultasiModel->download_diagnosa($no_record)->row();
+		$file = 'uploads/diagnosa/' . $fileinfo->foto_pemeriksaan;
+		force_download($file, NULL);
 	}
 }

@@ -6,10 +6,8 @@
 			<div class="row">
 				<div class="col-lg-9 col-md-9">
 					<div class="banner-content">
-						<h1>Clean Medical Template</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua.</p>
-						<a title="Consult" class="btn btn-primary consult-btn" href="appointment.html">Consult</a>
+						<h1>Doctor Care</h1>
+						<p>Konsultasi lah bersama dokter professional kami secara online dengan biaya konsultasi yang terjangkau</p>
 					</div>
 				</div>
 			</div>
@@ -20,11 +18,9 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="section-header text-center">
-						<h3 class="header-title">About Medifab</h3>
+						<h3 class="header-title">Tentang Doctor Care</h3>
 						<div class="line"></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae risus
-							nec dui venenatis dignissim. Aenean vitae metus in augue pretium ultrices.
-							Duis dictum eget dolor vel blandit.</p>
+						<p>Berikut merupakan unggulan jika anda memakai applikasi doctor care.</p>
 					</div>
 				</div>
 			</div>
@@ -34,9 +30,8 @@
 						<div class="feature-img">
 							<img width="60" height="60" alt="Book an Appointment" src="<?= base_url('assets/pasien/') ?>img/icon-01.png">
 						</div>
-						<h4>Book an Appointment</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor.
+						<h4>Buat janji</h4>
+						<p>Disini anda bisa membuat janji sesuai jadwal dokter yang tersedia.
 						</p>
 					</div>
 				</div>
@@ -45,9 +40,8 @@
 						<div class="feature-img">
 							<img width="60" height="60" alt="Consult with a Doctor" src="<?= base_url('assets/pasien/') ?>img/icon-02.png">
 						</div>
-						<h4>Consult with a Doctor</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor.
+						<h4>konsultasi dengan dokter</h4>
+						<p>Disini anda bisa konsultasi dengan dokter mengenai penyakit ataupun masalah k
 						</p>
 					</div>
 				</div>

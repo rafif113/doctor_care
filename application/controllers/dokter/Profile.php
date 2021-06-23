@@ -53,13 +53,23 @@ class Profile extends CI_Controller
 
 			$nama_dokter	  = $this->input->post('nama_dokter');
 			$username 		  = $this->input->post('username');
+			$email 		      = $this->input->post('email');
+			$alamat 		  = $this->input->post('alamat');
 			$no_telp 		  = $this->input->post('no_telp');
+			$str 		      = $this->input->post('str');
+			$keahlian 		  = $this->input->post('keahlian');
 			$pengalaman_kerja = $this->input->post('pengalaman_kerja');
+			$harga 			  = $this->input->post('harga');
 			$data = [
 				'nama_dokter' 	   => $nama_dokter,
 				'username'		   => $username,
+				'email'		       => $email,
+				'alamat'		   => $alamat,
 				'no_telp' 		   => $no_telp,
-				'pengalaman_kerja' => $pengalaman_kerja
+				'STR' 		       => $str,
+				'keahlian' 		   => $keahlian,
+				'pengalaman_kerja' => $pengalaman_kerja,
+				'harga' 		   => $harga,
 			];
 			$this->ProfileModel->update_profile($data);
 			$this->session->set_flashdata('flash', 'Berhasil Di Update');

@@ -12,6 +12,11 @@
 							<div class="form-group">
 								<label>Tanggal <span class="text-red">*</span>
 								</label>
+
+								<!-- <select name="" class="form-control" id="">
+									<option value=""></option>
+								</select> -->
+
 								<div class="calendar">
 									<div class="input-wrapper">
 										<input name="tanggal" data-date-format="yyyy/mm/dd" id="datepicker" class="cal-input" autocomplete="off"> <i class="far fa-calendar-alt input-icon"></i>
@@ -36,6 +41,7 @@
 								<span class="form-text text-danger"><?= form_error('foto_keluhan'); ?></span>
 							</div>
 							<input type="hidden" name="id_dokter" class="form-control" value="<?= $dokter->id_dokter ?>">
+							<input type="hidden" name="nominal" class="form-control" value="<?= $dokter->harga ?>">
 							<div class="form-group text-center m-b-0">
 								<input type="submit" class="btn btn-primary account-btn" value="Submit">
 							</div>

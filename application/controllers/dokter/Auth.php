@@ -46,11 +46,11 @@ class Auth extends CI_Controller
 					$this->session->set_userdata($data);
 					redirect('dokter');
 				} else {
-					$this->session->set_flashdata('flash', 'Password Salah');
+					// $this->session->set_flashdata('flash', 'Password Salah');
 					redirect('dokter/auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
+				// $this->session->set_flashdata('message', 'Akun tidak ditemukan');
 				redirect('dokter/auth');
 			}
 		}
@@ -83,7 +83,7 @@ class Auth extends CI_Controller
 				'nama_dokter' => htmlspecialchars($nama_dokter),
 			];
 			$this->AuthModel->tambah_dokter($data);
-			$this->session->set_flashdata('flash', 'Akun berhasil dibuat');
+			// $this->session->set_flashdata('flash', 'Akun berhasil dibuat');
 			redirect(base_url('dokter/auth'));
 		}
 	}

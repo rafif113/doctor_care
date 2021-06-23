@@ -55,4 +55,13 @@ class KonsultasiModel extends CI_Model
 	{
 		return $this->db->get_where('rekam_medis', ['id_konsultasi' => $id_konsultasi]);
 	}
+
+	public function download_diagnosa($no_record)
+	{
+		$this->db->select('foto_pemeriksaan');
+		$this->db->from('rekam_medis');
+		$this->db->where('no_record', $no_record);
+		$query = $this->db->get();
+		return $query;
+	}
 }
