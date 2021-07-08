@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jun 2021 pada 16.54
+-- Waktu pembuatan: 08 Jul 2021 pada 08.14
 -- Versi server: 10.4.19-MariaDB
 -- Versi PHP: 8.0.6
 
@@ -114,7 +114,11 @@ INSERT INTO `jadwal` (`id_jadwal`, `tanggal`, `jam_mulai`, `jam_berakhir`, `id_d
 ('JDW-001', '2021-06-24', '09:45', '16:45', 'DR-001'),
 ('JDW-002', '2021-06-25', '09:45', '16:45', 'DR-001'),
 ('JDW-003', '2021-06-25', '13:45', '16:45', 'DR-003'),
-('JDW-004', '2021-07-01', '09:45', '16:45', 'DR-002');
+('JDW-004', '2021-07-01', '09:45', '16:45', 'DR-002'),
+('JDW-005', '2021-07-07', '09:45', '16:45', 'DR-001'),
+('JDW-006', '2021-07-17', '09:45', '16:45', 'DR-001'),
+('JDW-007', '2021-07-17', '09:45', '16:45', 'DR-001'),
+('JDW-008', '2021-07-28', '09:45', '16:45', 'DR-001');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,12 @@ CREATE TABLE `konsultasi` (
 --
 
 INSERT INTO `konsultasi` (`id_konsultasi`, `tanggal`, `jam`, `keluhan`, `foto_keluhan`, `meet`, `status`, `tanggal_reschedule`, `jam_reschedule`, `id_pasien`, `id_dokter`) VALUES
-('KST-001', '2021-06-24', '13:00', 'Sakit hidung', 'example2.jpg', 'https://apps.google.com/meet/', 'Selesai', NULL, NULL, 'PSN-001', 'DR-001');
+('KST-001', '2021-06-24', '11:00', 'Saki', 'contoh_5.jpg', 'https://meet.google.com/gzi-ojey-tqo', 'Selesai', NULL, NULL, 'PSN-001', 'DR-001'),
+('KST-002', '2021-06-25', '12:00', 'Sakit mata', '2_31.jpg', 'meet.com', 'Selesai', NULL, NULL, 'PSN-003', 'DR-001'),
+('KST-003', '2021-07-01', '11:00', 'Sakit Mata', 'user-6.jpg', 'meet.com', 'Selesai', NULL, NULL, 'PSN-001', 'DR-002'),
+('KST-004', '2021-06-25', '12:00', 'Sakit mata', 'Screenshot_2020-11-10_092332.jpg', 'gogle.meet', 'Selesai', '2021-07-16', '09:45', 'PSN-001', 'DR-001'),
+('KST-005', '2021-07-07', '12:00', 'Keluhan kulit di area mata', '2_32.jpg', 'https://meet.google.com/psz-zoht-toy', 'Menunggu', NULL, NULL, 'PSN-001', 'DR-001'),
+('KST-006', '2021-07-07', '13:00', 'Sakit mata', 'Screenshot_2020-11-10_0923321.jpg', 'meet.com', 'Disetujui', NULL, NULL, 'PSN-001', 'DR-001');
 
 -- --------------------------------------------------------
 
@@ -189,7 +198,8 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id_obat`, `nama_obat`, `merk_obat`) VALUES
-('OBT-001', 'Obat sunscreen', 'Nivea');
+('OBT-001', 'Obat sunscreen', 'Nivea'),
+('OBT-002', 'Obat Cream Malam', 'Wardah');
 
 -- --------------------------------------------------------
 
@@ -216,7 +226,9 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `email`, `username`, `password`, `jenis_kelamin`, `alamat`, `no_ktp`, `foto`, `no_telp`, `tgl_lahir`) VALUES
-('PSN-001', 'stephen hawkins', 'stephen@gmail.com', 'stephen', '$2y$10$4PtDH8QR2kcuv6wvBxgdTuXhIQy10fIITkA8BMBi8bFW8z2tZlASu', NULL, NULL, NULL, NULL, NULL, NULL);
+('PSN-001', 'Stephen Hawkins Jr', 'stephen@hawmail.com', 'stephen', '$2y$10$4PtDH8QR2kcuv6wvBxgdTuXhIQy10fIITkA8BMBi8bFW8z2tZlASu', 'Laki-laki', 'Jl Ach', '1234567890123456', 'doctor-012.jpg', '082116097045', '2005-01-10'),
+('PSN-002', 'Rafif Yusuf Avandy', 'rafifyusuf@gmail.com', 'rafifyusuf', '$2y$10$iynBsa7x/yikqkyOCTQPQ.vyeEJXtXJLOLMTmT19Wz3q/nTeNPcVC', NULL, NULL, NULL, NULL, NULL, NULL),
+('PSN-003', 'haga', 'haga@mail.com', 'haga123', '$2y$10$KASGHA47IIixIyetmvXPX.T6FpaLIr1dZ.jZfsUJ/tjLjuYECTX1e', 'Laki-laki', 'Bsa 1', '1234567890123456', 'example.jpg', '08211697381', '2016-06-08');
 
 -- --------------------------------------------------------
 
@@ -242,7 +254,12 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `kode_bayar`, `nominal`, `foto_pembayaran`, `status_bayar`, `tgl_pembayaran`, `tgl_validasi`, `jam_validasi`, `id_admin`, `id_konsultasi`) VALUES
-('PMB-001', '888850267184', 70000, 'doctor-01.jpg', 'Terbayar', NULL, NULL, NULL, NULL, 'KST-001');
+('PMB-001', '888891073465', 70000, NULL, 'Belum dibayar', NULL, NULL, NULL, NULL, 'KST-001'),
+('PMB-002', '888824038971', 70000, '2_2.jpg', 'Terbayar', '2021-06-30', '2021-06-30', '12:55', 'ADM-001', 'KST-002'),
+('PMB-003', '888824196387', 55000, '2_3.jpg', 'Terbayar', '2021-07-07', '2021-07-07', '10:23', 'ADM-001', 'KST-003'),
+('PMB-004', '888819730526', 70000, 'contoh_5.jpg', 'Terbayar', '2021-07-07', '2021-07-07', '10:59', 'ADM-001', 'KST-004'),
+('PMB-005', '888876329548', 70000, NULL, 'Belum dibayar', NULL, NULL, NULL, NULL, 'KST-005'),
+('PMB-006', '888878901326', 70000, '2_21.jpg', 'Terbayar', '2021-07-08', '2021-07-08', '01:12', 'ADM-001', 'KST-006');
 
 -- --------------------------------------------------------
 
@@ -268,7 +285,10 @@ CREATE TABLE `rekam_medis` (
 --
 
 INSERT INTO `rekam_medis` (`no_record`, `no_rekam_medis`, `tanggal`, `jam`, `diagnosa`, `catatan`, `foto_pemeriksaan`, `id_dokter`, `id_pasien`, `id_konsultasi`) VALUES
-('RC-001', 880866, '2021-07-28', '12:00', 'Sakit ringan', 'Alhamdulillah', 'doctor-01.jpg', 'DR-001', 'PSN-001', 'KST-001');
+('RC-001', 12131212, '2021-06-25', '12:00', 'Sakit sembuh', 'Sembuh ya de', '2_21.jpg', 'DR-001', 'PSN-001', 'KST-001'),
+('RC-002', 12131212, '2021-06-24', '12:00', 'Sakit sembuh', 'Sembuh', '2_2.jpg', 'DR-001', 'PSN-003', 'KST-002'),
+('RC-003', NULL, NULL, NULL, NULL, NULL, NULL, 'DR-002', 'PSN-001', 'KST-003'),
+('RC-004', NULL, NULL, NULL, NULL, NULL, NULL, 'DR-001', 'PSN-001', 'KST-004');
 
 -- --------------------------------------------------------
 
@@ -288,7 +308,11 @@ CREATE TABLE `resep` (
 --
 
 INSERT INTO `resep` (`id_resep`, `cara_pakai`, `kode_obat`, `dosis`) VALUES
-('RSP-001', 'Ulaskan merata', '121212', '3 x 1');
+('RSP-001', 'Ulaskan merata', '121212', '3 x 1'),
+('RSP-002', 'Usapkan pada pinggir pipi', '9712791', '2 x 1'),
+('RSP-003', 'Dioles', '18261', '3 x 1'),
+('RSP-004', '', '', ''),
+('RSP-005', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -300,10 +324,23 @@ CREATE TABLE `resep_obat` (
   `id_resep_obat` int(10) UNSIGNED NOT NULL,
   `tgl_centang` date DEFAULT NULL,
   `jam_centang` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_obat` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_resep` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_pasien` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+  `id_obat` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_resep` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_pasien` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_konsultasi` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `resep_obat`
+--
+
+INSERT INTO `resep_obat` (`id_resep_obat`, `tgl_centang`, `jam_centang`, `id_obat`, `id_resep`, `id_pasien`, `id_konsultasi`) VALUES
+(7, '2021-06-29', '09:20:37', 'OBT-002', 'RSP-001', 'PSN-001', 'KST-001'),
+(8, '2021-06-29', '09:20:37', 'OBT-002', 'RSP-002', 'PSN-001', 'KST-001'),
+(9, '2021-06-29', '09:20:37', 'OBT-002', 'RSP-001', 'PSN-001', 'KST-001'),
+(10, '2021-06-29', '09:20:37', 'OBT-002', 'RSP-002', 'PSN-001', 'KST-001'),
+(11, '2021-07-07', '17:31:55', 'OBT-002', 'RSP-003', 'PSN-003', 'KST-002'),
+(12, '2021-07-07', '17:31:55', 'OBT-001', 'RSP-001', 'PSN-003', 'KST-002');
 
 --
 -- Indexes for dumped tables
@@ -390,7 +427,8 @@ ALTER TABLE `resep_obat`
   ADD PRIMARY KEY (`id_resep_obat`),
   ADD KEY `resep_obat_id_obat_foreign` (`id_obat`),
   ADD KEY `resep_obat_id_resep_foreign` (`id_resep`),
-  ADD KEY `resep_obat_id_pasien_foreign` (`id_pasien`);
+  ADD KEY `resep_obat_id_pasien_foreign` (`id_pasien`),
+  ADD KEY `resep_obat_id_konsultasi_foreign` (`id_konsultasi`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -406,7 +444,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `resep_obat`
 --
 ALTER TABLE `resep_obat`
-  MODIFY `id_resep_obat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resep_obat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -444,6 +482,7 @@ ALTER TABLE `rekam_medis`
 -- Ketidakleluasaan untuk tabel `resep_obat`
 --
 ALTER TABLE `resep_obat`
+  ADD CONSTRAINT `resep_obat_id_konsultasi_foreign` FOREIGN KEY (`id_konsultasi`) REFERENCES `konsultasi` (`id_konsultasi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `resep_obat_id_obat_foreign` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `resep_obat_id_pasien_foreign` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `resep_obat_id_resep_foreign` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE CASCADE;
