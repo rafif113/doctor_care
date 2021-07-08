@@ -12,6 +12,7 @@
 </style>
 
 
+
 <!--  BEGIN CONTENT AREA  -->
 <div id="content" class="main-content">
 	<div class="layout-px-spacing">
@@ -24,32 +25,55 @@
 						<thead>
 							<tr>
 								<th>No.</th>
-								<th>Nama Dokter</th>
-								<th>Tanggal</th>
-								<th>Hari</th>
-								<th>Jam Operasional</th>
+								<th>Nama Pasien</th>
+								<th>Email</th>
+								<th>No Telp</th>
+								<th>No KTP</th>
+								<th class="dt-no-sorting text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php $no = 1;
-							foreach ($jadwal as $data) { ?>
-								<tr>
-									<td><?= $no++ ?></td>
-									<td>Dr. Juda</td>
-									<td><?= date_indo($data->tanggal) ?></td>
-									<td>Sabtu</td>
-									<td><?= $data->jam_mulai ?> WIB - <?= $data->jam_berakhir ?> WIB</td>
-								</tr>
-							<?php	} ?>
-
+							<tr>
+								<td>1</td>
+								<td>Haga</td>
+								<td>haga@gmail.com </td>
+								<td>089699571958</td>
+								<td>668333577900001</td>
+								<td class="text-center">
+									<button class="btn btn-primary btn-sm">Info Pasien
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+											<circle cx="12" cy="12" r="10"></circle>
+											<line x1="12" y1="16" x2="12" y2="12"></line>
+											<line x1="12" y1="8" x2="12.01" y2="8"></line>
+										</svg>
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Alvin</td>
+								<td>alvin@gmail.com </td>
+								<td>081433562689</td>
+								<td>668333577900002</td>
+								<td class="text-center">
+									<button class="btn btn-primary btn-sm">Info Pasien
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+											<circle cx="12" cy="12" r="10"></circle>
+											<line x1="12" y1="16" x2="12" y2="12"></line>
+											<line x1="12" y1="8" x2="12.01" y2="8"></line>
+										</svg>
+									</button>
+								</td>
+							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>No</th>
-								<th>Nama Dokter</th>
-								<th>Tanggal</th>
-								<th>Hari</th>
-								<th>Jam Operasional</th>
+								<th>No.</th>
+								<th>Nama Pasien</th>
+								<th>Email</th>
+								<th>No Telp</th>
+								<th>No KTP</th>
+								<th class="invisible"></th>
 							</tr>
 						</tfoot>
 					</table>

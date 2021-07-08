@@ -44,4 +44,13 @@ class JadwalModel extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function get_dokter($id_konsultasi)
+	{
+		$this->db->select('id_dokter, id_pasien');
+		$this->db->from('konsultasi');
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		$query = $this->db->get();
+		return $query;
+	}
 }

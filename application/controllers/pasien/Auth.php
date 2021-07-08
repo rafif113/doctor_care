@@ -12,6 +12,9 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
+		if ($this->session->userdata('id_pasien')) {
+			redirect('pasien');
+		}
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/login');
 		$this->load->view('pasien/layouts/footer');
@@ -19,44 +22,12 @@ class Auth extends CI_Controller
 
 	public function registrasi()
 	{
+		if ($this->session->userdata('id_pasien')) {
+			redirect('pasien');
+		}
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/registrasi');
 		$this->load->view('pasien/layouts/footer');
-	}
-
-	public function proses_login()
-	{
-		if ($this->session->userdata('username')) {
-			redirect('pasien');
-		}
-
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		if ($this->form_validation->run() == false) {
-			$this->index();
-		} else {
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-
-			$user = $this->db->get_where('pasien', ['username' => $username])->row_array();
-			if ($user) {
-				if (password_verify($password, $user['password'])) {
-					$data = [
-						'id_pasien'   => $user['id_pasien'],
-						'username'    => $user['username'],
-						'nama_pasien' => $user['nama_pasien']
-					];
-					$this->session->set_userdata($data);
-					redirect('pasien');
-				} else {
-					$this->session->set_flashdata('flash', 'Password Salah');
-					redirect('pasien/auth');
-				}
-			} else {
-				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
-				redirect('pasien/auth');
-			}
-		}
 	}
 
 	public function password_check($str)
@@ -65,6 +36,40 @@ class Auth extends CI_Controller
 			return TRUE;
 		}
 		return FALSE;
+	}
+
+	public function proses_login()
+	{
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|alpha_numeric', [
+			'matches' => 'Password tidak cocok!',
+			'min_length' => 'Password terlalu pendek, minimal 8 karakter!',
+		]);
+		if ($this->form_validation->run() == false) {
+			$this->index();
+		} else {
+			$username = $this->input->post('username', true);
+			$password = $this->input->post('password', true);
+
+			$user = $this->db->get_where('pasien', ['username' => $username])->row_array();
+			if ($user) {
+				if (password_verify($password, $user['password'])) {
+					$data = [
+						'id_pasien'   => $user['id_pasien'],
+						'nama_pasien' => $user['nama_pasien']
+					];
+					$this->session->set_userdata($data);
+					$this->session->set_flashdata('success', 'Selamat datang ' . $this->session->nama_pasien);
+					redirect('pasien');
+				} else {
+					$this->session->set_flashdata('message', 'Pasword Salah');
+					$this->index();
+				}
+			} else {
+				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
+				$this->index();
+			}
+		}
 	}
 
 	public function proses_registrasi()

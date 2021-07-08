@@ -12,16 +12,11 @@
 							<div class="form-group">
 								<label>Tanggal <span class="text-red">*</span>
 								</label>
-
-								<!-- <select name="" class="form-control" id="">
-									<option value=""></option>
-								</select> -->
-
-								<div class="calendar">
-									<div class="input-wrapper">
-										<input name="tanggal" data-date-format="yyyy/mm/dd" id="datepicker" class="cal-input" autocomplete="off"> <i class="far fa-calendar-alt input-icon"></i>
-									</div>
-								</div>
+								<select name="tanggal" class="form-control">
+									<?php foreach ($jadwal as $data) { ?>
+										<option value="<?= $data->tanggal ?>"><?= date_indo($data->tanggal) ?></option>
+									<?php	} ?>
+								</select>
 								<span class="form-text text-danger"><?= form_error('tanggal'); ?></span>
 							</div>
 							<div class="form-group">

@@ -57,24 +57,14 @@
 										<a href="<?= base_url('pasien/dokter') ?>" class="nav-link">Dokter</a>
 									</li>
 									<li class="nav-item">
-										<a class="btn btn-primary appoint-btn nav-link" href="<?= base_url('pasien/dokter') ?>">Buat Jadwal</a>
+										<a class="btn btn-primary appoint-btn nav-link" href="<?= base_url('pasien/dokter') ?>">Buat Janji</a>
 									</li>
-									<style>
-										.show {
-											margin-top: -1px
-										}
-									</style>
 									<li class="dropdown nav-item">
-										<a class="dropdown-toggle settings-icon nav-link" data-toggle="dropdown"><i class="fas fa-cog"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<?php if ($this->session->username) { ?>
-												<a class="dropdown-item" href="<?= base_url('pasien/profile') ?>">Profile</a>
-												<a class="dropdown-item" href="<?= base_url('pasien/auth/logout') ?>">Logout</a>
-											<?php	} else { ?>
-												<a class="dropdown-item" href="<?= base_url('pasien/auth') ?>">Login</a>
-												<a class="dropdown-item" href="<?= base_url('pasien/auth/registrasi') ?>">Register</a>
-											<?php	} ?>
-										</div>
+										<?php if ($this->session->id_pasien) { ?>
+											<a class="dropdown-toggle settings-icon nav-link" href="<?= base_url('pasien/profile') ?>"><i class="fas fa-user"></i></a>
+										<?php	} else { ?>
+											<a class="dropdown-toggle settings-icon nav-link" href="<?= base_url('pasien/auth') ?>"><i class="fas fa-user"></i></a>
+										<?php	} ?>
 									</li>
 								</ul>
 							</div>

@@ -1,4 +1,6 @@
 <!-- Content -->
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('success'); ?>"></div>
+<?php unset($_SESSION['success']); ?>
 <div class="main-content">
 	<section class="section home-banner row-middle">
 		<div class="inner-bg"></div>
@@ -362,3 +364,16 @@
 	</section>
 </div>
 <!-- Content /-->
+<script src="<?= base_url('assets/pasien/') ?>js/jquery-3.5.1.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	const flashData = $('.flash-data').data('flashdata');
+	console.log(flashData);
+	if (flashData) {
+		Swal.fire({
+			icon: 'success',
+			title: 'Sukses!',
+			text: flashData
+		});
+	}
+</script>

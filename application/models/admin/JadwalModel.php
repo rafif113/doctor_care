@@ -41,6 +41,12 @@ class JadwalModel extends CI_Model
 		return $this->db->update('konsultasi', $data);
 	}
 
+	public function update_pembayaran($id_konsultasi, $data)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		return $this->db->update('pembayaran', $data);
+	}
+
 	public function data_email($id_konsultasi)
 	{
 		$this->db->select('nama_pasien,email, meet, konsultasi.id_konsultasi, keluhan, foto_keluhan, tanggal, jam, tanggal_reschedule, jam_reschedule, konsultasi.status,');

@@ -22,7 +22,7 @@ class Auth extends CI_Controller
 
 	public function proses_login()
 	{
-		if ($this->session->userdata('username')) {
+		if ($this->session->userdata('id_dokter')) {
 			redirect('dokter');
 		}
 
@@ -39,18 +39,17 @@ class Auth extends CI_Controller
 				if (password_verify($password, $user['password'])) {
 					$data = [
 						'id_dokter'   => $user['id_dokter'],
-						'username'    => $user['username'],
 						'nama_dokter' => $user['nama_dokter'],
 						'foto' 		  => $user['foto'],
 					];
 					$this->session->set_userdata($data);
 					redirect('dokter');
 				} else {
-					// $this->session->set_flashdata('flash', 'Password Salah');
+					$this->session->set_flashdata('message', 'Pasword Salah');
 					redirect('dokter/auth');
 				}
 			} else {
-				// $this->session->set_flashdata('message', 'Akun tidak ditemukan');
+				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
 				redirect('dokter/auth');
 			}
 		}

@@ -37,7 +37,7 @@
 								<tr>
 									<td><?= $data->id_konsultasi ?></td>
 									<td><?= $data->nama_pasien ?></td>
-									<td><?= date_indo($data->tanggal) ?></td>
+									<td><?= longdate_indo($data->tanggal) ?></td>
 									<td><?= $data->jam ?> WIB</td>
 									<td><?= $data->keluhan ?></td>
 									<td class="text-center">
@@ -187,6 +187,9 @@
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+																<a href="<?= base_url('dokter/jadwal/konsultasi_selesai/' . $data->id_konsultasi) ?>">
+																	<button type="button" class="btn btn-secondary">Selesai</button>
+																</a>
 															</div>
 														</div>
 													</div>

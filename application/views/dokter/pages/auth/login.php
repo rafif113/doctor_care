@@ -21,15 +21,16 @@
 
 <body class="form">
 
-
+	<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+	<?php unset($_SESSION['message']); ?>
 	<div class="form-container outer">
 		<div class="form-form">
 			<div class="form-form-wrap">
 				<div class="form-container">
 					<div class="form-content">
 
-						<h1 class="">Sign In</h1>
-						<p class="">Log in to your account to continue.</p>
+						<h1 class="">Dokter</h1>
+						<p class="">Silahkan masuk sebagai dokter untuk masuk.</p>
 
 						<form class="text-left" action="<?= base_url('dokter/auth/proses_login') ?>" method="POST">
 							<div class="form">
@@ -40,14 +41,13 @@
 										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 										<circle cx="12" cy="7" r="4"></circle>
 									</svg>
-									<input name="username" type="text" class="form-control" placeholder="e.g John_Doe">
+									<input name="username" type="text" class="form-control" placeholder="e.g juda">
 									<span class="form-text text-danger"><?= form_error('username'); ?></span>
 								</div>
 
 								<div id="password-field" class="field-wrapper input mb-2">
 									<div class="d-flex justify-content-between">
 										<label for="password">PASSWORD</label>
-										<a href="auth_pass_recovery_boxed.html" class="forgot-pass-link">Forgot Password?</a>
 									</div>
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
 										<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -66,7 +66,7 @@
 									</div>
 								</div>
 
-								<p class="signup-link">Not registered ? <a href="<?= base_url('dokter/auth/registrasi') ?>">Create an account</a></p>
+								<p class="signup-link">Belum mempunyai akun ? <a href="<?= base_url('dokter/auth/registrasi') ?>">Buat Akun!</a></p>
 
 							</div>
 						</form>
@@ -85,6 +85,18 @@
 
 	<!-- END GLOBAL MANDATORY SCRIPTS -->
 	<script src="<?= base_url('assets/admin/') ?>assets/js/authentication/form-2.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		const flashData = $('.flash-data').data('flashdata');
+		console.log(flashData);
+		if (flashData) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Error!',
+				text: flashData
+			});
+		}
+	</script>
 
 </body>
 

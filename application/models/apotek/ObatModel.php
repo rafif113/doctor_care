@@ -49,4 +49,31 @@ class ObatModel extends CI_Model
 	{
 		return $this->db->insert('resep', $data);
 	}
+
+	public function get_pasien()
+	{
+		$this->db->select('resep_obat.*, pasien.*');
+		$this->db->from('resep_obat');
+		$this->db->join('pasien', 'pasien.id_pasien = resep_obat.id_pasien');
+		$this->db->group_by('id_konsultasi');
+		$this->db->order_by('id_konsultasi', 'asc');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function get_resep_konsultasi($id_konsultasi)
+	{
+		$this->db->select('resep_obat.*, obat.*, resep.*');
+		$this->db->from('resep_obat');
+		$this->db->join('obat', 'obat.id_obat = resep_obat.id_obat');
+		$this->db->join('resep', 'resep.id_resep = resep_obat.id_resep');
+		$this->db->where('resep_obat.id_konsultasi', $id_konsultasi);
+		$query = $this->db->get();
+		return $query;
+	}
+	public function update_resep($id_konsultasi, $data_centang)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		return $this->db->update('resep_obat', $data_centang);
+	}
 }

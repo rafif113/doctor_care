@@ -14,4 +14,10 @@ class ProfileModel extends CI_Model
 	{
 		return $this->db->get_where('dokter', ['id_dokter' => $id_dokter]);
 	}
+
+	public function update_pasien($id_pasien, $data)
+	{
+		$this->db->where('id_pasien', $id_pasien);
+		return $this->db->update('pasien', $data);
+	}
 }

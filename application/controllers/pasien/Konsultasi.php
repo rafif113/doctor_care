@@ -15,14 +15,29 @@ class Konsultasi extends CI_Controller
 		$this->load->model('pasien/DokterModel', 'DokterModel');
 		$this->load->model('pasien/KonsultasiModel', 'KonsultasiModel');
 		$this->load->model('pasien/PembayaranModel', 'PembayaranModel');
+		$this->load->model('pasien/ProfileModel', 'ProfileModel');
 	}
 
 	public function index($id_dokter)
 	{
-		$data['dokter'] = $this->DokterModel->get_single_dokter($id_dokter)->row();
-		$this->load->view('pasien/layouts/header');
-		$this->load->view('pasien/pages/tambah-janji', $data);
-		$this->load->view('pasien/layouts/footer');
+		$pasien = $this->ProfileModel->get_profile($this->session->id_pasien)->row();
+		$pasienCount = count(get_object_vars($pasien));
+		$pasienCheck = [];
+		foreach ($pasien as $dataPasien) {
+			if ($dataPasien != NULL) {
+				array_push($pasienCheck, $dataPasien);
+			}
+		}
+		if (count($pasienCheck) == $pasienCount) {
+			$data['dokter'] = $this->DokterModel->get_single_dokter($id_dokter)->row();
+			$data['jadwal'] = $this->KonsultasiModel->get_jadwal($id_dokter)->result();
+			$this->load->view('pasien/layouts/header');
+			$this->load->view('pasien/pages/tambah-janji', $data);
+			$this->load->view('pasien/layouts/footer');
+		} else {
+			$this->session->set_flashdata('validasi', 'Terisi Sebelum Melakukan Konsultasi');
+			redirect(base_url('pasien/profile'));
+		}
 	}
 
 	public function validasi_tambah_janji()
@@ -117,6 +132,7 @@ class Konsultasi extends CI_Controller
 			$data_pembayaran = [
 				'foto_pembayaran' => $foto_pembayaran,
 				'status_bayar' 	  => 'Terbayar',
+				'tgl_pembayaran'  => date("Y-m-d"),
 			];
 
 			$this->PembayaranModel->update_pembayaran($id_pembayaran, $data_pembayaran);
@@ -151,6 +167,8 @@ class Konsultasi extends CI_Controller
 	public function diagnosa($id_konsultasi)
 	{
 		$data['diagnosa'] = $this->KonsultasiModel->get_rekam_medis($id_konsultasi)->row();
+		$data['validasi'] = $this->KonsultasiModel->validasi_resep($id_konsultasi)->row();
+		$data['resep'] = $this->KonsultasiModel->get_resep_konsultasi($id_konsultasi)->result();
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/rekam-medis', $data);
 		$this->load->view('pasien/layouts/footer');

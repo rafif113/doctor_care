@@ -8,9 +8,10 @@ class Jadwal extends CI_Controller
 	{
 		parent::__construct();
 
-		if (!$this->session->username) {
+		if (!$this->session->id_admin) {
 			redirect(base_url('admin/auth'));
 		}
+		date_default_timezone_set('Asia/Jakarta');
 		$this->load->helper('tgl_indo');
 		$this->load->model('admin/JadwalModel', 'JadwalModel');
 	}
@@ -38,7 +39,13 @@ class Jadwal extends CI_Controller
 			'meet'   => $meet,
 			'status' => 'Disetujui',
 		];
+		$data_pembayaran = [
+			'id_admin' => $this->session->id_admin,
+			'tgl_validasi' => date("Y-m-d"),
+			'jam_validasi' => date("h:i"),
+		];
 		$this->JadwalModel->update_status($id_konsultasi, $data);
+		$this->JadwalModel->update_pembayaran($id_konsultasi, $data_pembayaran);
 
 		$data_konsultasi['konsultasi'] = $this->JadwalModel->data_email($id_konsultasi)->row();
 
@@ -65,25 +72,6 @@ class Jadwal extends CI_Controller
 		$this->email->message($body);
 		$this->email->send();
 
-		redirect(base_url('admin/jadwal/konsultasi'));
-	}
-
-	public function konsultasi_selesai($id_konsultasi)
-	{
-		$this->load->model('dokter/DiagnosaModel', 'DiagnosaModel');
-		$no_record = $this->DiagnosaModel->id_rekam_medis();
-		$id_dp     = $this->JadwalModel->get_dokter($id_konsultasi)->row();
-		$data = [
-			'status' => 'Selesai',
-		];
-		$data_diagnosa = [
-			'no_record'     => $no_record,
-			'id_dokter'     => 	$id_dp->id_dokter,
-			'id_pasien' 	=> 	$id_dp->id_pasien,
-			'id_konsultasi' => $id_konsultasi,
-		];
-		$this->DiagnosaModel->tambah_diagnosa($data_diagnosa);
-		$this->JadwalModel->update_status($id_konsultasi, $data);
 		redirect(base_url('admin/jadwal/konsultasi'));
 	}
 }

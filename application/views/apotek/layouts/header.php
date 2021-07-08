@@ -22,9 +22,9 @@
 	<link href="<?= base_url('assets/admin/') ?>assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/admin/') ?>assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/admin/') ?>plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-	<script src="<?= base_url('assets/admin/') ?>plugins/sweetalerts/promise-polyfill.js"></script>
+	<!-- <script src="<?= base_url('assets/admin/') ?>plugins/sweetalerts/promise-polyfill.js"></script>
 	<link href="<?= base_url('assets/admin/') ?>plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-	<link href="<?= base_url('assets/admin/') ?>plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+	<link href="<?= base_url('assets/admin/') ?>plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" /> -->
 	<link href="<?= base_url('assets/admin/') ?>assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 

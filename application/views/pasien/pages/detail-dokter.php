@@ -7,7 +7,7 @@
 				<div class="col-12 col-md-4 col-lg-4 col-xl-4 doctor-sidebar">
 					<div class="doctor-list doctor-view">
 						<div class="doctor-inner">
-							<img class="img-fluid" alt="" src="<?= base_url('assets/pasien/') ?>img/doctor-06.jpg">
+							<img class="img-fluid" alt="" src="<?= base_url('uploads/profile/' . $dokter->foto) ?>">
 							<div class="doctor-details">
 								<div class="doctor-info">
 									<h4 class="doctor-name"><?= $dokter->nama_dokter ?></h4>

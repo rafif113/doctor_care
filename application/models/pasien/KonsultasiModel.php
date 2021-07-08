@@ -34,6 +34,11 @@ class KonsultasiModel extends CI_Model
 		return $query;
 	}
 
+	public function get_jadwal($id_dokter)
+	{
+		return $this->db->get_where('jadwal', ['id_dokter' => $id_dokter]);
+	}
+
 	public function update_status($id_konsultasi, $data)
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
@@ -61,6 +66,28 @@ class KonsultasiModel extends CI_Model
 		$this->db->select('foto_pemeriksaan');
 		$this->db->from('rekam_medis');
 		$this->db->where('no_record', $no_record);
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function get_resep_konsultasi($id_konsultasi)
+	{
+		$this->db->select('resep_obat.*, obat.*, resep.*');
+		$this->db->from('resep_obat');
+		$this->db->join('obat', 'obat.id_obat = resep_obat.id_obat');
+		$this->db->join('resep', 'resep.id_resep = resep_obat.id_resep');
+		$this->db->where('resep_obat.id_konsultasi', $id_konsultasi);
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function validasi_resep($id_konsultasi)
+	{
+		$this->db->select('*');
+		$this->db->from('resep_obat');
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		$this->db->group_by('id_konsultasi');
+		$this->db->order_by('id_konsultasi', 'asc');
 		$query = $this->db->get();
 		return $query;
 	}
