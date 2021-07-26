@@ -33,38 +33,28 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Haga</td>
-								<td>haga@gmail.com </td>
-								<td>089699571958</td>
-								<td>668333577900001</td>
-								<td class="text-center">
-									<button class="btn btn-primary btn-sm">Info Pasien
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-											<circle cx="12" cy="12" r="10"></circle>
-											<line x1="12" y1="16" x2="12" y2="12"></line>
-											<line x1="12" y1="8" x2="12.01" y2="8"></line>
-										</svg>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Alvin</td>
-								<td>alvin@gmail.com </td>
-								<td>081433562689</td>
-								<td>668333577900002</td>
-								<td class="text-center">
-									<button class="btn btn-primary btn-sm">Info Pasien
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-											<circle cx="12" cy="12" r="10"></circle>
-											<line x1="12" y1="16" x2="12" y2="12"></line>
-											<line x1="12" y1="8" x2="12.01" y2="8"></line>
-										</svg>
-									</button>
-								</td>
-							</tr>
+							<?php $no = 1;
+							foreach ($pasien as $row) { ?>
+								<tr>
+									<td><?= $no++ ?></td>
+									<td><?= $row->nama_pasien ?></td>
+									<td><?= $row->email ?></td>
+									<td><?= $row->no_hp ?></td>
+									<td><?= $row->no_ktp ?></td>
+									<td class="text-center">
+										<a href="<?= base_url('admin/kelola/detail_pasien/' . $row->id_pasien) ?>">
+											<button class="btn btn-primary btn-sm">Info Pasien
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+													<circle cx="12" cy="12" r="10"></circle>
+													<line x1="12" y1="16" x2="12" y2="12"></line>
+													<line x1="12" y1="8" x2="12.01" y2="8"></line>
+												</svg>
+											</button>
+										</a>
+									</td>
+								</tr>
+							<?php } ?>
+
 						</tbody>
 						<tfoot>
 							<tr>

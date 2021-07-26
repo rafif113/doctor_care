@@ -7,9 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
 	<title>
-		Invoice Doctor Care | <?= $invoice->id_konsultasi ?>
+		Invoice Doctor Care
 	</title>
-	<link rel="icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png" />
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet" />
 	<link href="<?= base_url('assets/admin/') ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
 															<div class="row">
 																<div class="col-sm-6 col-12 mr-auto">
 																	<div class="d-flex">
-																		<img class="company-logo" src="<?= base_url('assets/admin/') ?>assets/img/cork-logo.png" alt="company" />
+																		<img class="company-logo" src="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png" alt="company" />
 																		<h3 class="in-heading align-self-center">
 																			Doktor Care
 																		</h3>
@@ -71,7 +71,7 @@
 																	<p class="inv-created-date">
 																		<span class="inv-title">Tanggal Invoice :
 																		</span>
-																		<span class="inv-date"><?= date("d M Y", strtotime($invoice->tanggal)); ?></span>
+																		<span class="inv-date"><?= longdate_indo($invoice->tanggal) ?></span>
 																	</p>
 																</div>
 															</div>
@@ -92,7 +92,7 @@
 																		<?= $invoice->email ?>
 																	</p>
 																	<p class="inv-email-address">
-																		<?= $invoice->no_telp ?>
+																		<?= $invoice->no_hp ?>
 																	</p>
 																</div>
 

@@ -72,6 +72,6 @@ class Jadwal extends CI_Controller
 		$this->email->message($body);
 		$this->email->send();
 
-		redirect(base_url('admin/jadwal/konsultasi'));
+		redirect(base_url('admin/kelola/pembayaran'));
 	}
 }

@@ -30,7 +30,8 @@ class Profile extends CI_Controller
 		$jenis_kelamin = $this->input->post('jenis_kelamin');
 		$alamat = $this->input->post('alamat');
 		$no_ktp = $this->input->post('no_ktp');
-		$no_telp = $this->input->post('no_telp');
+		$no_telepon_rumah = $this->input->post('no_telepon_rumah');
+		$no_hp = $this->input->post('no_hp');
 		$tgl_lahir = $this->input->post('tgl_lahir');
 
 		$data_pasien = [
@@ -38,7 +39,8 @@ class Profile extends CI_Controller
 			'email' => $email,
 			'username' => $username,
 			'jenis_kelamin' => $jenis_kelamin,
-			'no_telp' => $no_telp,
+			'no_hp' => $no_hp,
+			'no_telepon_rumah' => $no_telepon_rumah,
 			'tgl_lahir' => $tgl_lahir,
 			'alamat' => $alamat,
 			'no_ktp' => $no_ktp,

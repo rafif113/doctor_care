@@ -16,6 +16,18 @@ class JadwalModel extends CI_Model
 		$id    = "JDW-" . $id;
 		return $id;
 	}
+	public function id_reschedule()
+	{
+		$reschedule = "RSC-";
+		$q     = "SELECT MAX(TRIM(REPLACE(id_reschedule,'RSC-', ''))) as nama
+             FROM reschedule WHERE id_reschedule LIKE '$reschedule%'";
+		$baris = $this->db->query($q);
+		$akhir = $baris->row()->nama;
+		$akhir++;
+		$id    = str_pad($akhir, 3, "0", STR_PAD_LEFT);
+		$id    = "RSC-" . $id;
+		return $id;
+	}
 
 	public function tambah_jadwal($data)
 	{
@@ -25,7 +37,12 @@ class JadwalModel extends CI_Model
 	public function update_status($id_konsultasi, $data)
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
-		return $this->db->update('konsultasi', $data);
+		return $this->db->update('pendaftaran_konsultasi', $data);
+	}
+
+	public function tambah_reschedule($data)
+	{
+		return $this->db->insert('reschedule', $data);
 	}
 
 	public function get_single_jadwal()
@@ -37,10 +54,11 @@ class JadwalModel extends CI_Model
 	public function get_konsultasi()
 	{
 		$id_dokter = $this->session->id_dokter;
-		$this->db->select('nama_pasien, meet, konsultasi.id_konsultasi, keluhan, foto_keluhan, tanggal, jam, tanggal_reschedule, jam_reschedule, konsultasi.status,');
-		$this->db->from('konsultasi');
-		$this->db->join('pasien', 'pasien.id_pasien = konsultasi.id_pasien');
-		$this->db->where('konsultasi.id_dokter', $id_dokter);
+		$this->db->select('nama_pasien, meet, pendaftaran_konsultasi.id_konsultasi, keluhan, foto_keluhan, tanggal, jam, pendaftaran_konsultasi.status,');
+		$this->db->from('pendaftaran_konsultasi');
+		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
+		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
+		$this->db->where('pendaftaran_konsultasi.status !=', 'Menunggu');
 		$query = $this->db->get();
 		return $query;
 	}
@@ -48,7 +66,7 @@ class JadwalModel extends CI_Model
 	public function get_dokter($id_konsultasi)
 	{
 		$this->db->select('id_dokter, id_pasien');
-		$this->db->from('konsultasi');
+		$this->db->from('pendaftaran_konsultasi');
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		$query = $this->db->get();
 		return $query;

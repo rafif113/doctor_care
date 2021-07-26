@@ -21,12 +21,6 @@
 										<input id="nama" name="nama_obat" class="form-control text-black" type="text" placeholder="Nama Obat">
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="merk">Merk Obat</label>
-										<input id="merk" name="merk_obat" class="form-control text-black" type="text" placeholder="Merk Obat">
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -59,7 +53,6 @@
 							<tr>
 								<th>No.</th>
 								<th>Nama Obat</th>
-								<th>Merk Obat</th>
 								<th class="dt-no-sorting text-center">Aksi</th>
 							</tr>
 						</thead>
@@ -69,7 +62,6 @@
 								<tr>
 									<td><?= $no++ ?></td>
 									<td><?= $data->nama_obat ?></td>
-									<td><?= $data->merk_obat ?></td>
 									<td class="text-center">
 										<button class="btn btn-primary btn-sm">Edit Obat
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -86,7 +78,6 @@
 							<tr>
 								<th>No</th>
 								<th>Nama Obat</th>
-								<th>Merk Obat</th>
 								<th class="invisible"></th>
 							</tr>
 						</tfoot>

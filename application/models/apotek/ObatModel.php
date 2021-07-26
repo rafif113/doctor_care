@@ -26,54 +26,37 @@ class ObatModel extends CI_Model
 	{
 		return $this->db->insert('obat', $data);
 	}
-
-	public function id_resep()
-	{
-		$resep = "RSP-";
-		$q     = "SELECT MAX(TRIM(REPLACE(id_resep,'RSP-', ''))) as nama
-             FROM resep WHERE id_resep LIKE '$resep%'";
-		$baris = $this->db->query($q);
-		$akhir = $baris->row()->nama;
-		$akhir++;
-		$id    = str_pad($akhir, 3, "0", STR_PAD_LEFT);
-		$id    = "RSP-" . $id;
-		return $id;
-	}
-
-	public function get_resep()
-	{
-		return $this->db->get('resep');
-	}
-
-	public function tambah_resep($data)
-	{
-		return $this->db->insert('resep', $data);
-	}
-
 	public function get_pasien()
 	{
-		$this->db->select('resep_obat.*, pasien.*');
-		$this->db->from('resep_obat');
-		$this->db->join('pasien', 'pasien.id_pasien = resep_obat.id_pasien');
-		$this->db->group_by('id_konsultasi');
-		$this->db->order_by('id_konsultasi', 'asc');
+		$this->db->select('resep.*, pasien.*, pendaftaran_konsultasi.id_konsultasi');
+		$this->db->from('resep');
+		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = resep.id_konsultasi');
+		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
+		$this->db->group_by('pendaftaran_konsultasi.id_konsultasi');
+		$this->db->order_by('pendaftaran_konsultasi.id_konsultasi', 'asc');
 		$query = $this->db->get();
 		return $query;
 	}
 
 	public function get_resep_konsultasi($id_konsultasi)
 	{
-		$this->db->select('resep_obat.*, obat.*, resep.*');
-		$this->db->from('resep_obat');
-		$this->db->join('obat', 'obat.id_obat = resep_obat.id_obat');
-		$this->db->join('resep', 'resep.id_resep = resep_obat.id_resep');
-		$this->db->where('resep_obat.id_konsultasi', $id_konsultasi);
+		$this->db->select('detail_resep.*, obat.*, resep.*');
+		$this->db->from('detail_resep');
+		$this->db->join('obat', 'obat.id_obat = detail_resep.id_obat');
+		$this->db->join('resep', 'resep.id_resep = detail_resep.id_resep');
+		$this->db->where('detail_resep.id_konsultasi', $id_konsultasi);
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function get_validasi_resep($id_konsultasi)
+	{
+		return $this->db->get_where('resep', ['id_konsultasi' => $id_konsultasi]);
+	}
+
 	public function update_resep($id_konsultasi, $data_centang)
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
-		return $this->db->update('resep_obat', $data_centang);
+		return $this->db->update('resep', $data_centang);
 	}
 }

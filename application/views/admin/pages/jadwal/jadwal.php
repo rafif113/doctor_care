@@ -26,7 +26,6 @@
 								<th>No.</th>
 								<th>Nama Dokter</th>
 								<th>Tanggal</th>
-								<th>Hari</th>
 								<th>Jam Operasional</th>
 							</tr>
 						</thead>
@@ -36,8 +35,7 @@
 								<tr>
 									<td><?= $no++ ?></td>
 									<td>Dr. Juda</td>
-									<td><?= date_indo($data->tanggal) ?></td>
-									<td>Sabtu</td>
+									<td><?= longdate_indo($data->tanggal) ?></td>
 									<td><?= $data->jam_mulai ?> WIB - <?= $data->jam_berakhir ?> WIB</td>
 								</tr>
 							<?php	} ?>
@@ -48,7 +46,6 @@
 								<th>No</th>
 								<th>Nama Dokter</th>
 								<th>Tanggal</th>
-								<th>Hari</th>
 								<th>Jam Operasional</th>
 							</tr>
 						</tfoot>

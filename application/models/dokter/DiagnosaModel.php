@@ -17,22 +17,40 @@ class DiagnosaModel extends CI_Model
 		return $id;
 	}
 
-	// public function id_resep_obat()
-	// {
-	// 	$resep_obat = "RSO-";
-	// 	$q     = "SELECT MAX(TRIM(REPLACE(id_resep_obat,'RSO-', ''))) as nama
-	//          FROM resep_obat WHERE id_resep_obat LIKE '$resep_obat%'";
-	// 	$baris = $this->db->query($q);
-	// 	$akhir = $baris->row()->nama;
-	// 	$akhir++;
-	// 	$id    = str_pad($akhir, 3, "0", STR_PAD_LEFT);
-	// 	$id    = "RSO-" . $id;
-	// 	return $id;
-	// }
+	public function id_resep()
+	{
+		$resep = "RSP-";
+		$q     = "SELECT MAX(TRIM(REPLACE(id_resep,'RSP-', ''))) as nama
+	         FROM resep WHERE id_resep LIKE '$resep%'";
+		$baris = $this->db->query($q);
+		$akhir = $baris->row()->nama;
+		$akhir++;
+		$id    = str_pad($akhir, 3, "0", STR_PAD_LEFT);
+		$id    = "RSP-" . $id;
+		return $id;
+	}
+
+	public function daftar_diagnosa()
+	{
+		$id_dokter = $this->session->id_dokter;
+		$this->db->select('nama_pasien, pendaftaran_konsultasi.id_konsultasi, no_record, rekam_medis.tanggal, foto_pemeriksaan');
+		$this->db->from('rekam_medis');
+		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
+		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = rekam_medis.id_konsultasi');
+		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
+		$this->db->where('pendaftaran_konsultasi.status', 'Selesai');
+		$query = $this->db->get();
+		return $query;
+	}
 
 	public function get_diagnosa($id_konsultasi)
 	{
 		return $this->db->get_where('rekam_medis', ['id_konsultasi' => $id_konsultasi]);
+	}
+
+	public function get_resep_id($id_konsultasi)
+	{
+		return $this->db->get_where('resep', ['id_konsultasi' => $id_konsultasi]);
 	}
 
 	public function tambah_diagnosa($data)
@@ -41,7 +59,18 @@ class DiagnosaModel extends CI_Model
 	}
 	public function tambah_resep($data)
 	{
-		return $this->db->insert('resep_obat', $data);
+		return $this->db->insert('resep', $data);
+	}
+
+	public function tambah_detail_resep($data)
+	{
+		return $this->db->insert('detail_resep', $data);
+	}
+
+	public function update_resep($id_konsultasi, $data)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		return $this->db->update('resep', $data);
 	}
 
 	public function update_diagnosa($id_konsultasi, $data)
@@ -53,7 +82,7 @@ class DiagnosaModel extends CI_Model
 	public function update_resep_obat($id_konsultasi, $data)
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
-		return $this->db->update('resep_obat', $data);
+		return $this->db->update('detail_resep', $data);
 	}
 
 	public function get_obat()
@@ -68,11 +97,10 @@ class DiagnosaModel extends CI_Model
 
 	public function get_resep_konsultasi($id_konsultasi)
 	{
-		$this->db->select('resep_obat.*, obat.*, resep.*');
-		$this->db->from('resep_obat');
-		$this->db->join('obat', 'obat.id_obat = resep_obat.id_obat');
-		$this->db->join('resep', 'resep.id_resep = resep_obat.id_resep');
-		$this->db->where('resep_obat.id_konsultasi', $id_konsultasi);
+		$this->db->select('detail_resep.*, obat.*');
+		$this->db->from('detail_resep');
+		$this->db->join('obat', 'obat.id_obat = detail_resep.id_obat');
+		$this->db->where('detail_resep.id_konsultasi', $id_konsultasi);
 		$query = $this->db->get();
 		return $query;
 	}

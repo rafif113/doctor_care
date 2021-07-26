@@ -52,15 +52,22 @@ class Jadwal extends CI_Controller
 
 	public function proses_reschedule_jadwal($id_konsultasi)
 	{
-		$tanggal_reschedule = $this->input->post('tanggal_reschedule');
-		$jam_reschedule 	= $this->input->post('jam_reschedule');
+		$id_reschedule  = $this->JadwalModel->id_reschedule();
+		$tgl_reschedule = $this->input->post('tanggal_reschedule');
+		$jam_reschedule = $this->input->post('jam_reschedule');
 
 		$data = [
-			'status' 		     => 'Ubah jadwal',
-			'tanggal_reschedule' => $tanggal_reschedule,
-			'jam_reschedule'     => $jam_reschedule,
+			'status' => 'Ubah jadwal',
 		];
+		$data_reschedule = [
+			'id_reschedule' => $id_reschedule,
+			'id_konsultasi' => $id_konsultasi,
+			'jam_reschedule' => $jam_reschedule,
+			'tgl_reschedule' => $tgl_reschedule,
+		];
+
 		$this->JadwalModel->update_status($id_konsultasi, $data);
+		$this->JadwalModel->tambah_reschedule($data_reschedule);
 		redirect(base_url('dokter/jadwal/konsultasi'));
 	}
 
@@ -74,6 +81,7 @@ class Jadwal extends CI_Controller
 
 	public function konsultasi_selesai($id_konsultasi)
 	{
+		$id_resep = $this->DiagnosaModel->id_resep();
 		$no_record = $this->DiagnosaModel->id_rekam_medis();
 		$id_dp     = $this->JadwalModel->get_dokter($id_konsultasi)->row();
 		$data = [
@@ -85,7 +93,12 @@ class Jadwal extends CI_Controller
 			'id_pasien' 	=> 	$id_dp->id_pasien,
 			'id_konsultasi' => $id_konsultasi,
 		];
+		$resep = [
+			'id_resep' => $id_resep,
+			'id_konsultasi' => $id_konsultasi,
+		];
 		$this->DiagnosaModel->tambah_diagnosa($data_diagnosa);
+		$this->DiagnosaModel->tambah_resep($resep);
 		$this->JadwalModel->update_status($id_konsultasi, $data);
 		redirect(base_url('dokter/jadwal/konsultasi'));
 	}

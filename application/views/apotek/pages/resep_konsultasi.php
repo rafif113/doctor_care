@@ -10,15 +10,16 @@
 
 			<div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
 				<div class="widget-content widget-content-area br-6">
-					<a href="<?= base_url('apotek/dashboard/proses_tebus_resep/' . $id_konsultasi) ?>" class="tebus">
-						<button type="button" class="btn btn-primary mx-3 mt-3">Tebus Resep</button>
-					</a>
+					<?php if (!$pasien->jam_centang) : ?>
+						<a href="<?= base_url('apotek/dashboard/proses_tebus_resep/' . $id_konsultasi) ?>" class="tebus">
+							<button type="button" class="btn btn-primary mx-3 mt-3">Tebus Resep</button>
+						</a>
+					<?php endif; ?>
 					<table id="default-ordering" class="table table-hover">
 						<thead>
 							<tr>
 								<th>No.</th>
 								<th>Nama Obat</th>
-								<th>Merek Obat</th>
 								<th>Cara Pakai</th>
 								<th>Dosis</th>
 							</tr>
@@ -29,7 +30,6 @@
 								<tr>
 									<td><?= $no++ ?>.</td>
 									<td><?= $data->nama_obat ?></td>
-									<td><?= $data->merk_obat ?></td>
 									<td><?= $data->cara_pakai ?></td>
 									<td><?= $data->dosis ?></td>
 								</tr>
@@ -39,7 +39,6 @@
 							<tr>
 								<th>No.</th>
 								<th>Nama Obat</th>
-								<th>Merek Obat</th>
 								<th>Cara Pakai</th>
 								<th>Dosis</th>
 							</tr>

@@ -8,7 +8,7 @@
 	<title>Medifab - Health &amp; Medical HTML Template</title>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/pasien/') ?>img/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?= base_url('assets/pasien/') ?>css/bootstrap.min.css">
@@ -23,6 +23,7 @@
 	<!-- Owl Carousel Css -->
 	<link rel="stylesheet" href="<?= base_url('assets/pasien/') ?>css/owl.carousel.css">
 	<link rel="stylesheet" href="<?= base_url('assets/pasien/') ?>css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets/') ?>nice-select/css/nice-select.css">
 
 	<!-- Main Css -->
 	<link rel="stylesheet" href="<?= base_url('assets/pasien/') ?>css/style.css">
@@ -40,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-2 float-left">
 						<div class="logo">
-							<a href="<?= base_url('pasien/') ?>"><img alt="Logo" src="<?= base_url('assets/pasien/') ?>img/logo.png" width="56" height="50"></a>
+							<a href="<?= base_url('pasien/') ?>"><img alt="Logo" src="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png" width="56" height="50"></a>
 						</div>
 					</div>
 					<div class="col-md-10">

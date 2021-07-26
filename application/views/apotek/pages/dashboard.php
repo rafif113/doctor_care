@@ -15,7 +15,7 @@
 							<tr>
 								<th>No.</th>
 								<th>Nama Pasien</th>
-								<th>No Telpon</th>
+								<th>No Hp</th>
 								<th>Alamat</th>
 								<th>Status</th>
 								<th class="dt-no-sorting text-center">Aksi</th>
@@ -27,7 +27,7 @@
 								<tr>
 									<td><?= $no++ ?></td>
 									<td><?= $data->nama_pasien ?></td>
-									<td><?= $data->no_telp ?></td>
+									<td><?= $data->no_hp ?></td>
 									<td><?= $data->alamat ?></td>
 									<td>
 										<?php if ($data->tgl_centang == NULL || $data->jam_centang == NULL) { ?>
@@ -40,7 +40,7 @@
 									<td class="text-center">
 										<?php if ($data->tgl_centang == NULL || $data->jam_centang == NULL) { ?>
 											<a href="<?= base_url('apotek/dashboard/tebus_resep/' . $data->id_konsultasi) ?>">
-												<button class="btn btn-primary btn-sm">Tebus Resep
+												<button class="btn btn-success btn-sm">Tebus Resep
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
 														<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
 														<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -48,12 +48,15 @@
 												</button>
 											</a>
 										<?php } else { ?>
-											<button class="btn btn-success btn-sm">Resep Ditebus
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-													<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-													<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-												</svg>
-											</button>
+											<a href="<?= base_url('apotek/dashboard/tebus_resep/' . $data->id_konsultasi) ?>">
+												<button class="btn btn-primary btn-sm">Info Resep
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+														<circle cx="12" cy="12" r="10"></circle>
+														<line x1="12" y1="16" x2="12" y2="12"></line>
+														<line x1="12" y1="8" x2="12.01" y2="8"></line>
+													</svg>
+												</button>
+											</a>
 										<?php } ?>
 									</td>
 								</tr>
@@ -64,7 +67,7 @@
 							<tr>
 								<th>No.</th>
 								<th>Nama Pasien</th>
-								<th>No Telpon</th>
+								<th>No Hp</th>
 								<th>Alamat</th>
 								<th>Status</th>
 								<th class="invisible"></th>

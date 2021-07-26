@@ -10,7 +10,6 @@
 							<img class="img-fluid" alt="" src="<?= base_url('uploads/profile/' . $dokter->foto) ?>">
 							<div class="doctor-details">
 								<div class="doctor-info">
-									<h4 class="doctor-name"><?= $dokter->nama_dokter ?></h4>
 									<p>
 										<span class="depart"><?= $dokter->keahlian ?></span>
 									</p>
@@ -30,7 +29,11 @@
 									</li>
 								</ul>
 								<div class="book-appointment">
-									<a href="<?= base_url('pasien/konsultasi/index/' . $dokter->id_dokter) ?>">Buat Janji</a>
+									<?php if (!$jadwal) { ?>
+										<button disabled class="btn btn-primary btn-block mt-3">Buat Janji</button>
+									<?php	} else { ?>
+										<a class="btn btn-primary btn-block" href="<?= base_url('pasien/konsultasi/index/' . $dokter->id_dokter) ?>">Buat Janji</a>
+									<?php	} ?>
 								</div>
 							</div>
 						</div>
@@ -38,8 +41,8 @@
 				</div>
 				<div class="col-12 col-md-8 col-lg-8 col-xl-8">
 					<div class="about-doctor">
-						<h3 class="sub-title">Tentang Dokter</h3>
-						<p><?= $dokter->pengalaman_kerja ?>.</p>
+						<h2 class="mb-1"><?= $dokter->nama_dokter ?></h2>
+						<span class="text-black-50"><?= $dokter->keahlian ?></span>
 					</div>
 					<div class="experience-widget">
 						<h3 class="sub-title">Pengalaman</h3>
@@ -47,38 +50,45 @@
 							<ul class="experience-list">
 								<li>
 									<div class="timeline-content">
-										<h4>Health Center Hospital - USA (2016 to 2018)</h4>
-										<div>Lorem ipsum dolor sit amet</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-content">
-										<h4>Health Center Hospital - USA (2012 to 2016)</h4>
-										<div>Lorem ipsum dolor sit amet</div>
+										<h6><?= $dokter->pengalaman_kerja ?></h6>
 									</div>
 								</li>
 							</ul>
 						</div>
 					</div>
-					<div class="education-widget">
-						<h3 class="sub-title">Education Informations</h3>
-						<div class="experience-box">
-							<ul class="experience-list">
-								<li>
-									<div class="timeline-content">
-										<h4>International College of Medical Science (PG) (2003 to 2008)</h4>
-										<div>FDS</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-content">
-										<h4>International College of Medical Science (UG) (2000 to 2003)</h4>
-										<div>MBBS</div>
-									</div>
-								</li>
-							</ul>
+					<?php if (!$jadwal) { ?>
+						<div class="education-widget">
+							<h3 class="sub-title">Tidak Ada Jadwal Yang Tersedia</h3>
 						</div>
-					</div>
+					<?php	} else { ?>
+						<div class="education-widget">
+							<h3 class="sub-title">Jadwal Yang Tersedia</h3>
+							<div class="experience-box">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th scope="col">No</th>
+											<th scope="col">Tanggal</th>
+											<th scope="col">Jam Mulai</th>
+											<th scope="col">Jam Selesai</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $no = 1;
+										foreach ($jadwal as $row) { ?>
+											<tr>
+												<th scope="row"><?= $no++ ?></th>
+												<td><?= longdate_indo($row->tanggal) ?></td>
+												<td><?= $row->jam_mulai ?></td>
+												<td><?= $row->jam_berakhir ?></td>
+											</tr>
+										<?php	} ?>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					<?php	} ?>
 				</div>
 			</div>
 		</div>

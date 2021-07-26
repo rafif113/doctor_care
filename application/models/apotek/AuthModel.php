@@ -8,7 +8,7 @@ class AuthModel extends CI_Model
 	{
 		$admin_apotek = "ADMP-";
 		$q     = "SELECT MAX(TRIM(REPLACE(id_admin_apotek,'ADMP-', ''))) as nama
-             FROM admin_apotek WHERE id_admin_apotek LIKE '$admin_apotek%'";
+             FROM apoteker WHERE id_admin_apotek LIKE '$admin_apotek%'";
 		$baris = $this->db->query($q);
 		$akhir = $baris->row()->nama;
 		$akhir++;
@@ -19,6 +19,6 @@ class AuthModel extends CI_Model
 
 	public function tambah_admin_apotek($data)
 	{
-		return $this->db->insert('admin_apotek', $data);
+		return $this->db->insert('apoteker', $data);
 	}
 }

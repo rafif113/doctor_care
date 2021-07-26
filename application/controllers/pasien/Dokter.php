@@ -21,6 +21,7 @@ class Dokter extends CI_Controller
 	public function detail_dokter($id_dokter)
 	{
 		$data['dokter'] = $this->DokterModel->get_single_dokter($id_dokter)->row();
+		$data['jadwal'] = $this->DokterModel->get_jadwal_dokter($id_dokter)->result();
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/detail-dokter', $data);
 		$this->load->view('pasien/layouts/footer');

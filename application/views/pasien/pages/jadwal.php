@@ -12,6 +12,9 @@
 		<h2 class="text-center">Riwayat Jadwal Konsultasi</h2>
 		<div class="line mb-4"></div>
 
+		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('validasiDiagnosa'); ?>"></div>
+		<?php unset($_SESSION['validasiDiagnosa']); ?>
+
 		<?php foreach ($konsultasi as $data) : ?>
 			<div class="pb-4">
 				<div class="card w-full shadow-sm">
@@ -194,7 +197,7 @@
 																		</div>
 																		<div class="col">
 																			<h6 class="card-subtitle mb-2 text-muted">
-																				<p class="card-text small mt-2 font-weight-bold"><span class="vl mr-2 ml-0"></span> <?= longdate_indo($data->tanggal_reschedule) ?> <br><br>Jam <?= $data->jam_reschedule ?> WIB</p>
+																				<p class="card-text small mt-2 font-weight-bold"><span class="vl mr-2 ml-0"></span> <?= longdate_indo($data->tgl_reschedule) ?> <br><br>Jam <?= $data->jam_reschedule ?> WIB</p>
 																			</h6>
 																		</div>
 																	</div>
@@ -236,3 +239,15 @@
 	</div>
 </div>
 <!-- Content /-->
+<script src="<?= base_url('assets/pasien/') ?>js/jquery-3.5.1.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	const flashData = $('.flash-data').data('flashdata');
+	if (flashData) {
+		Swal.fire({
+			icon: 'warning',
+			title: 'Data Diagnosa',
+			text: 'Data diagnosa belum diinput oleh dokter'
+		});
+	}
+</script>

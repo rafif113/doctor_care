@@ -33,7 +33,7 @@
 										<select class="form-control" name="id_obat">
 											<option disabled selected>Nama Obat</option>
 											<?php foreach ($obat as $data) { ?>
-												<option value="<?= $data->id_obat ?>" <?php echo set_select('id_obat', $data->id_obat, (!empty($data) && $data == $data->id_obat ? TRUE : FALSE)); ?>><?= $data->nama_obat . ', ' . $data->merk_obat ?></option>
+												<option value="<?= $data->id_obat ?>" <?php echo set_select('id_obat', $data->id_obat, (!empty($data) && $data == $data->id_obat ? TRUE : FALSE)); ?>><?= $data->nama_obat ?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -41,12 +41,19 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">Cara Pakai</label>
-										<select class="form-control" name="id_resep">
-											<option disabled selected>Resep</option>
-											<?php foreach ($resep as $data) { ?>
-												<option value="<?= $data->id_resep ?>" <?php echo set_select('id_resep', $data->id_resep, (!empty($data) && $data == $data->id_resep ? TRUE : FALSE)); ?>><?= $data->cara_pakai . ', ' . $data->dosis ?></option>
-											<?php } ?>
-										</select>
+										<input type="text" name="cara_pakai" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="email">Dosis</label>
+										<input type="text" name="dosis" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="email">No Record</label>
+										<input type="text" name="no_record" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -102,19 +109,13 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label>Catatan</label>
-														<textarea name="catatan" class="form-control mb-4" cols="30" rows="6"><?= $diagnosa->catatan ?></textarea>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
 														<label>Diagnosa</label>
 														<textarea name="diagnosa" class="form-control mb-4" cols="30" rows="6"><?= $diagnosa->diagnosa ?></textarea>
 													</div>
 												</div>
 											</div>
 											<div class="row">
-												<div class="col-md-8">
+												<div class="col-md-6">
 													<div class="form-group">
 														<label>Foto Pemeriksaan</label>
 														<input type="file" name="foto_pemeriksaan" class="form-control mb-4 dropify">
@@ -153,7 +154,6 @@
 													<tr>
 														<th>No.</th>
 														<th>Nama Obat</th>
-														<th>Merek Obat</th>
 														<th>Cara Pakai</th>
 														<th>Dosis</th>
 														<th class="dt-no-sorting text-center">Aksi</th>
@@ -165,7 +165,6 @@
 														<tr>
 															<td><?= $no++ ?>.</td>
 															<td><?= $data->nama_obat ?></td>
-															<td><?= $data->merk_obat ?></td>
 															<td><?= $data->cara_pakai ?></td>
 															<td><?= $data->dosis ?></td>
 															<td>
@@ -189,7 +188,6 @@
 													<tr>
 														<th>No.</th>
 														<th>Nama Obat</th>
-														<th>Merek Obat</th>
 														<th>Cara Pakai</th>
 														<th>Dosis</th>
 														<th class="invisible"></th>

@@ -30,7 +30,7 @@ class Konsultasi extends CI_Controller
 		}
 		if (count($pasienCheck) == $pasienCount) {
 			$data['dokter'] = $this->DokterModel->get_single_dokter($id_dokter)->row();
-			$data['jadwal'] = $this->KonsultasiModel->get_jadwal($id_dokter)->result();
+			$data['jadwal'] = $this->DokterModel->get_jadwal_dokter($id_dokter)->result();
 			$this->load->view('pasien/layouts/header');
 			$this->load->view('pasien/pages/tambah-janji', $data);
 			$this->load->view('pasien/layouts/footer');
@@ -151,8 +151,11 @@ class Konsultasi extends CI_Controller
 
 	public function ubah_jadwal_setuju($id_konsultasi)
 	{
+		$reschedule = $this->KonsultasiModel->get_reschedule($id_konsultasi)->row();
 		$data = [
-			'status' => 'Menunggu',
+			'tanggal' => $reschedule->tgl_reschedule,
+			'jam' => $reschedule->jam_reschedule,
+			'status' => 'Disetujui',
 		];
 		$this->KonsultasiModel->update_status($id_konsultasi, $data);
 		redirect(base_url('pasien/konsultasi/jadwal'));
@@ -164,14 +167,35 @@ class Konsultasi extends CI_Controller
 		$this->load->view('pasien/pages/invoice', $data);
 	}
 
+	public function cetak_resep($id_konsultasi)
+	{
+		$data['resep'] = $this->KonsultasiModel->get_resep_konsultasi($id_konsultasi)->result();
+		$this->load->view('pasien/pages/daftar-resep', $data);
+	}
+
 	public function diagnosa($id_konsultasi)
 	{
+		$data['resep'] = $this->KonsultasiModel->get_resep_konsultasi($id_konsultasi)->result();
+		if (!count($data['resep'])) {
+			$this->session->set_flashdata('validasiDiagnosa', 'Diagnosa');
+			redirect(base_url('pasien/konsultasi/jadwal'));
+		}
 		$data['diagnosa'] = $this->KonsultasiModel->get_rekam_medis($id_konsultasi)->row();
 		$data['validasi'] = $this->KonsultasiModel->validasi_resep($id_konsultasi)->row();
-		$data['resep'] = $this->KonsultasiModel->get_resep_konsultasi($id_konsultasi)->result();
 		$this->load->view('pasien/layouts/header');
 		$this->load->view('pasien/pages/rekam-medis', $data);
 		$this->load->view('pasien/layouts/footer');
+	}
+
+	public function tebus($id_konsultasi)
+	{
+		$data = [
+			'validasi_pasien' => "Ditebus"
+		];
+		$data['validasi'] = $this->KonsultasiModel->update_resep($id_konsultasi, $data);
+		$this->session->set_flashdata('updateResep', 'Resep berhasil ditebus, silahkan ambil resep di apotek terdekat!');
+		redirect(base_url('pasien/konsultasi/cetak_resep/' . $id_konsultasi));
+		// redirect(base_url('pasien/konsultasi/diagnosa/' . $id_konsultasi));
 	}
 
 	public function download_diagnosa($no_record)

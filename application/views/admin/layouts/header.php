@@ -54,7 +54,7 @@
 					</a>
 				</li>
 				<li class="nav-item theme-text">
-					<a href="<?= base_url('admin/') ?>" class="nav-link"> DOKTORCARE </a>
+					<a href="<?= base_url('admin/jadwal') ?>" class="nav-link"> DOKTORCARE </a>
 				</li>
 			</ul>
 
@@ -272,8 +272,10 @@
 
 						<nav class="breadcrumb-one" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="<?= base_url('admin/') ?>">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page"><span><?= $this->uri->segment(3); ?></span></li>
+								<li class="breadcrumb-item"><a href="<?= base_url('admin/jadwal') ?>">Dashboard</a></li>
+								<?php
+								$url = str_replace("_", " ", $this->uri->segment(3)); ?>
+								<li class="breadcrumb-item active" aria-current="page"><span class="text-capitalize"><?= $url ?></span></li>
 							</ol>
 						</nav>
 

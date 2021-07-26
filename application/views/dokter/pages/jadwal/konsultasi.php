@@ -73,9 +73,6 @@
 									</td>
 									<td>
 										<?php switch ($data->status):
-											case "Menunggu": ?>
-												<span class="badge badge-warning"><?= $data->status ?></span>
-											<?php break;
 											case "Disetujui": ?>
 												<span class="badge badge-primary"><?= $data->status ?></span>
 											<?php break;
@@ -92,51 +89,6 @@
 									</td>
 									<td class="text-center">
 										<?php switch ($data->status):
-											case "Menunggu": ?>
-												<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#resechedule<?= $data->id_konsultasi ?>">Reschedule Jadwal
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-														<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-														<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-													</svg>
-												</button>
-												<div class="modal fade" id="resechedule<?= $data->id_konsultasi ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-													<div class="modal-dialog modal-dialog-centered" role="document">
-														<div class="modal-content">
-															<form action="<?= base_url('dokter/jadwal/proses_reschedule_jadwal/' . $data->id_konsultasi) ?>" method="POST">
-																<div class="modal-header">
-																	<h5 class="modal-title" id="exampleModalLabel">Reschedule Jadwal</h5>
-																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																	</button>
-																</div>
-																<div class="modal-body">
-																	<div class="row">
-																		<div class="col-md-12 mx-auto">
-																			<div class="row">
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<label for="website1">Tanggal Reschedule</label>
-																						<input id="myDate" name="tanggal_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Tanggal..">
-																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<label for="website2">Jam Reschedule</label>
-																						<input id="myID" data-enable-time="true" name="jam_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Jam..">
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="modal-footer">
-																	<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Close</button>
-																	<button type="submit" class="btn btn-primary">Save</button>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
-											<?php break;
 											case "Disetujui": ?>
 												<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailKonsultasi<?= $data->id_konsultasi ?>">Link Konsultasi
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
@@ -144,6 +96,7 @@
 														<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
 													</svg>
 												</button>
+
 												<!-- Modal Lihat Link-->
 												<div class="modal fade" id="detailKonsultasi<?= $data->id_konsultasi ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 													<div class="modal-dialog modal-dialog-centered" role="document">
@@ -157,14 +110,14 @@
 															<div class="modal-body">
 																<div class="container">
 																	<div class="card border-5 pt-2 active pb-0 px-3">
-																		<div class="card-body ">
+																		<div class="card-body">
 																			<div class="row">
-																				<div class="col-12 ">
+																				<div class="col-12">
 																					<h4 class="card-title "><b>Id Konsultasi : <?= $data->id_konsultasi ?></b></h4>
 																				</div>
 																				<div class="col">
 																					<h6 class="card-subtitle mb-2 text-muted">
-																						<p class="card-text text-muted small mt-2"><span class="vl mr-2 ml-0"></span> <?= longdate_indo($data->tanggal) ?> <br>Jam <?= $data->jam ?> WIB</p>
+																						<p class="card-text text-muted small mt-2"><span class="vl mr-2 ml-0"></span> <?= longdate_indo($data->tanggal) ?> <br>Jam <?= $data->jam ?> WIB <br><a href="<?= $data->meet ?>" target="_blank"><?= $data->meet ?></a></p>
 																					</h6>
 																				</div>
 																			</div>
@@ -184,11 +137,40 @@
 																		</div>
 																	</div>
 																</div>
+																<form action="<?= base_url('dokter/jadwal/proses_reschedule_jadwal/' . $data->id_konsultasi) ?>" method="POST">
+																	<div class="container mt-3">
+																		<div class="card border-5 pt-2 active pb-0 px-3">
+																			<div class="card-body">
+																				<div class="row">
+																					<div class="col-md-12 mx-auto">
+																						<h5 class="modal-title mb-3" id="exampleModalLabel">Reschedule Jadwal</h5>
+																						<div class="row">
+																							<div class="col-md-6">
+																								<div class="form-group">
+																									<label for="website1">Tanggal Reschedule</label>
+																									<input id="myDate" name="tanggal_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Tanggal..">
+																								</div>
+																							</div>
+																							<div class="col-md-6">
+																								<div class="form-group">
+																									<label for="website2">Jam Reschedule</label>
+																									<input id="myID" data-enable-time="true" name="jam_reschedule" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Jam..">
+																								</div>
+																							</div>
+																							<button class="btn btn-warning mb-3 ml-3">Reschedule</button>
+																							<span class="text-warning">* Abaikan apabila jadwal tidak direschedule</span>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</form>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
 																<a href="<?= base_url('dokter/jadwal/konsultasi_selesai/' . $data->id_konsultasi) ?>">
-																	<button type="button" class="btn btn-secondary">Selesai</button>
+																	<button type="button" class="btn btn-secondary">Selesai Konsultasi</button>
 																</a>
 															</div>
 														</div>
@@ -197,7 +179,7 @@
 												<!-- END Modal Lihat Link-->
 											<?php break;
 											case "Ubah jadwal": ?>
-												<button class="btn btn-warning btn-sm">Dalam Persetujuan
+												<button style="cursor: not-allowed !important;" class="btn btn-warning btn-sm">Dalam Persetujuan
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
 														<circle cx="12" cy="12" r="10"></circle>
 														<polyline points="12 6 12 12 16 14"></polyline>
@@ -214,15 +196,11 @@
 												</button>
 											<?php break;
 											case "Selesai": ?>
-												<a href="<?= base_url('dokter/diagnosa/input_diagnosa/' . $data->id_konsultasi) ?>">
-													<button class="btn btn-success btn-sm">Info Diagnosa
-														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-															<circle cx="12" cy="12" r="10"></circle>
-															<line x1="12" y1="16" x2="12" y2="12"></line>
-															<line x1="12" y1="8" x2="12.01" y2="8"></line>
-														</svg>
-													</button>
-												</a>
+												<button disabled class="btn btn-success btn-sm">Konsultasi Selesai
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
+														<polyline points="20 6 9 17 4 12"></polyline>
+													</svg>
+												</button>
 										<?php break;
 										endswitch; ?>
 									</td>

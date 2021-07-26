@@ -8,7 +8,7 @@ class KonsultasiModel extends CI_Model
 	{
 		$konsultasi = "KST-";
 		$q     = "SELECT MAX(TRIM(REPLACE(id_konsultasi,'KST-', ''))) as nama
-             FROM konsultasi WHERE id_konsultasi LIKE '$konsultasi%'";
+             FROM pendaftaran_konsultasi WHERE id_konsultasi LIKE '$konsultasi%'";
 		$baris = $this->db->query($q);
 		$akhir = $baris->row()->nama;
 		$akhir++;
@@ -19,39 +19,37 @@ class KonsultasiModel extends CI_Model
 
 	public function tambah_konsultasi($data)
 	{
-		return $this->db->insert('konsultasi', $data);
+		return $this->db->insert('pendaftaran_konsultasi', $data);
 	}
 
 	public function get_konsultasi()
 	{
 		$id_pasien = $this->session->id_pasien;
-		$this->db->select('nama_dokter, keahlian, foto,meet, konsultasi.id_konsultasi, tanggal, jam,tanggal_reschedule, jam_reschedule, konsultasi.status,pembayaran.*');
-		$this->db->from('konsultasi');
-		$this->db->join('dokter', 'dokter.id_dokter = konsultasi.id_dokter');
-		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = konsultasi.id_konsultasi');
-		$this->db->where('konsultasi.id_pasien', $id_pasien);
+		$this->db->select('nama_dokter, keahlian, foto,meet, pendaftaran_konsultasi.id_konsultasi, tanggal, jam, pendaftaran_konsultasi.status,pembayaran.*,
+		jam_reschedule,tgl_reschedule');
+		$this->db->from('pendaftaran_konsultasi');
+		$this->db->join('dokter', 'dokter.id_dokter = pendaftaran_konsultasi.id_dokter');
+		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = pendaftaran_konsultasi.id_konsultasi');
+		$this->db->join('reschedule', 'reschedule.id_konsultasi = pendaftaran_konsultasi.id_konsultasi', 'left');
+		$this->db->where('pendaftaran_konsultasi.id_pasien', $id_pasien);
 		$query = $this->db->get();
 		return $query;
-	}
-
-	public function get_jadwal($id_dokter)
-	{
-		return $this->db->get_where('jadwal', ['id_dokter' => $id_dokter]);
 	}
 
 	public function update_status($id_konsultasi, $data)
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
-		return $this->db->update('konsultasi', $data);
+		return $this->db->update('pendaftaran_konsultasi', $data);
 	}
+
 	public function invoice($id_konsultasi)
 	{
-		$this->db->select('tanggal, meet, konsultasi.id_dokter, keluhan, kode_bayar, nominal, nama_dokter, nama_pasien, pasien.email, pasien.alamat, pasien.no_telp');
-		$this->db->from('konsultasi');
-		$this->db->join('dokter', 'dokter.id_dokter = konsultasi.id_dokter');
-		$this->db->join('pasien', 'pasien.id_pasien = konsultasi.id_pasien');
-		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = konsultasi.id_konsultasi');
-		$this->db->where('konsultasi.id_konsultasi', $id_konsultasi);
+		$this->db->select('tanggal, meet, pendaftaran_konsultasi.id_dokter, keluhan, kode_bayar, nominal, nama_dokter, nama_pasien, pasien.email, pasien.alamat, pasien.no_hp');
+		$this->db->from('pendaftaran_konsultasi');
+		$this->db->join('dokter', 'dokter.id_dokter = pendaftaran_konsultasi.id_dokter');
+		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
+		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = pendaftaran_konsultasi.id_konsultasi');
+		$this->db->where('pendaftaran_konsultasi.id_konsultasi', $id_konsultasi);
 		$query = $this->db->get();
 		return $query;
 	}
@@ -72,11 +70,11 @@ class KonsultasiModel extends CI_Model
 
 	public function get_resep_konsultasi($id_konsultasi)
 	{
-		$this->db->select('resep_obat.*, obat.*, resep.*');
-		$this->db->from('resep_obat');
-		$this->db->join('obat', 'obat.id_obat = resep_obat.id_obat');
-		$this->db->join('resep', 'resep.id_resep = resep_obat.id_resep');
-		$this->db->where('resep_obat.id_konsultasi', $id_konsultasi);
+		$this->db->select('detail_resep.*, obat.*, resep.*');
+		$this->db->from('detail_resep');
+		$this->db->join('obat', 'obat.id_obat = detail_resep.id_obat');
+		$this->db->join('resep', 'resep.id_resep = detail_resep.id_resep');
+		$this->db->where('detail_resep.id_konsultasi', $id_konsultasi);
 		$query = $this->db->get();
 		return $query;
 	}
@@ -84,11 +82,22 @@ class KonsultasiModel extends CI_Model
 	public function validasi_resep($id_konsultasi)
 	{
 		$this->db->select('*');
-		$this->db->from('resep_obat');
+		$this->db->from('resep');
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		$this->db->group_by('id_konsultasi');
 		$this->db->order_by('id_konsultasi', 'asc');
 		$query = $this->db->get();
 		return $query;
+	}
+
+	public function get_reschedule($id_konsultasi)
+	{
+		return $this->db->get_where('reschedule', ['id_konsultasi' => $id_konsultasi]);
+	}
+
+	public function update_resep($id_konsultasi, $data)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+		return $this->db->update('resep', $data);
 	}
 }

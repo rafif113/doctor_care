@@ -33,42 +33,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Dr Haga</td>
-								<td>haga@gmail.com </td>
-								<td>Bedah kulit</td>
-								<td class="text-text-center"><span class="badge badge-success"> Aktif </span></td>
-								<td class="text-center">
-									<a href="<?= base_url('admin/kelola/detail_dokter/') ?>">
-										<button class="btn btn-primary btn-sm">Info Dokter
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-												<circle cx="12" cy="12" r="10"></circle>
-												<line x1="12" y1="16" x2="12" y2="12"></line>
-												<line x1="12" y1="8" x2="12.01" y2="8"></line>
-											</svg>
-										</button>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Dr Alvin</td>
-								<td>alvin@gmail.com </td>
-								<td>Bedah Hidung</td>
-								<td class="text-text-center"><span class="badge badge-warning"> Tidak Aktif </span></td>
-								<td class="text-center">
-									<a href="<?= base_url('admin/kelola/detail_dokter/') ?>">
-										<button class="btn btn-primary btn-sm">Info Dokter
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-												<circle cx="12" cy="12" r="10"></circle>
-												<line x1="12" y1="16" x2="12" y2="12"></line>
-												<line x1="12" y1="8" x2="12.01" y2="8"></line>
-											</svg>
-										</button>
-									</a>
-								</td>
-							</tr>
+							<?php $no = 1;
+							foreach ($dokter as $row) { ?>
+								<tr>
+									<td><?= $no++ ?></td>
+									<td><?= $row->nama_dokter ?></td>
+									<td><?= $row->email ?> </td>
+									<td><?= $row->keahlian ?></td>
+									<?php if ($row->status == "Aktif") { ?>
+										<td class="text-text-center"><span class="badge badge-success"> <?= $row->status ?> </span></td>
+									<?php	} else { ?>
+										<td class="text-text-center"><span class="badge badge-warning"> <?= $row->status ?> </span></td>
+									<?php	} ?>
+									<td class="text-center">
+										<a href="<?= base_url('admin/kelola/detail_dokter/' . $row->id_dokter) ?>">
+											<button class="btn btn-primary btn-sm">Info Dokter
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+													<circle cx="12" cy="12" r="10"></circle>
+													<line x1="12" y1="16" x2="12" y2="12"></line>
+													<line x1="12" y1="8" x2="12.01" y2="8"></line>
+												</svg>
+											</button>
+										</a>
+									</td>
+								</tr>
+							<?php } ?>
 						</tbody>
 						<tfoot>
 							<tr>

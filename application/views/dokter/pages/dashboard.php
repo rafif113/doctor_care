@@ -20,12 +20,6 @@
  											<circle cx="5" cy="12" r="1"></circle>
  										</svg>
  									</a>
-
- 									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingTask" style="will-change: transform;">
- 										<a class="dropdown-item" href="javascript:void(0);">This Week</a>
- 										<a class="dropdown-item" href="javascript:void(0);">Last Week</a>
- 										<a class="dropdown-item" href="javascript:void(0);">Last Month</a>
- 									</div>
  								</div>
  							</div>
  						</div>

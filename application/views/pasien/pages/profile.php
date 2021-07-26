@@ -95,16 +95,17 @@
 														</div>
 														<div class="col">
 															<div class="form-group">
-																<label>No Telepon</label>
-																<input class="form-control" type="text" name="no_telp" placeholder="No telepon" value="<?= $profile->no_telp ?>">
+																<label>No HP</label>
+																<input class="form-control" type="number" name="no_hp" placeholder="No HP" value="<?= $profile->no_hp ?>">
 															</div>
 														</div>
 													</div>
 													<div class="row">
 														<div class="col">
 															<div class="form-group">
-																<label>Tanggal Lahir</label>
-																<input class="form-control" type="date" name="tgl_lahir" value="<?php echo $profile->tgl_lahir ?>">
+																<label>No Telepon Rumah</label>
+																<input class="form-control" type="text" name="no_telepon_rumah" placeholder="No Telepon Rumah" value="<?= $profile->no_telepon_rumah ?>">
+																<span class="text-muted">*Jika tidak memiliki no telpon isi dengan -</span>
 															</div>
 														</div>
 														<div class="col">
@@ -126,14 +127,22 @@
 													<div class="row">
 														<div class="col">
 															<div class="form-group">
-																<label>No KTP</label>
-																<input class="form-control" type="number" name="no_ktp" value="<?= $profile->no_ktp ?>">
+																<label>Tanggal Lahir</label>
+																<input class="form-control" type="date" name="tgl_lahir" value="<?php echo $profile->tgl_lahir ?>">
 															</div>
 														</div>
 														<div class="col">
 															<div class="form-group">
+																<label>No KTP</label>
+																<input class="form-control" type="number" name="no_ktp" value="<?= $profile->no_ktp ?>">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-6">
+															<div class="form-group">
 																<label>Alamat</label>
-																<textarea class="form-control" name="alamat" cols="30" rows="1"><?= $profile->alamat ?></textarea>
+																<textarea class="form-control" name="alamat" cols="30" rows="5"><?= $profile->alamat ?></textarea>
 															</div>
 														</div>
 													</div>
@@ -206,6 +215,7 @@
 		</div>
 	</div>
 </div>
+
 <script src="<?= base_url('assets/pasien/') ?>js/jquery-3.5.1.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -247,3 +257,4 @@
 		});
 	});
 </script>
+<script type="text/javascript" src="<?= base_url('assets/pasien/') ?>dropify/js/dropify.min.js"></script>

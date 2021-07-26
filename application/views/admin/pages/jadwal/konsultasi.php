@@ -39,7 +39,7 @@
 								<tr>
 									<td><?= $data->id_konsultasi ?></td>
 									<td><?= $data->nama_pasien ?></td>
-									<td><?= date_indo($data->tanggal) ?></td>
+									<td><?= longdate_indo($data->tanggal) ?></td>
 									<td><?= $data->jam ?> WIB</td>
 									<td><?= $data->keluhan ?></td>
 									<td class="text-center">
@@ -54,7 +54,7 @@
 											<div class="modal-dialog modal-dialog-centered" role="document">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal</h5>
+														<h5 class="modal-title" id="exampleModalLabel">Foto Keluhan</h5>
 														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														</button>
 													</div>
@@ -74,9 +74,6 @@
 									</td>
 									<td>
 										<?php switch ($data->status):
-											case "Menunggu": ?>
-												<span class="badge badge-warning"><?= $data->status ?></span>
-											<?php break;
 											case "Disetujui": ?>
 												<span class="badge badge-primary"><?= $data->status ?></span>
 											<?php break;
@@ -93,98 +90,8 @@
 									</td>
 									<td class="text-center">
 										<?php switch ($data->status):
-											case "Menunggu": ?>
-												<?php if ($data->status_bayar == "Terbayar") { ?>
-													<a href="javascript:void(0)" data-toggle="modal" data-target="#setujuKonsultasi<?= $data->id_konsultasi ?>" class="btn btn-warning btn-sm">Setujui
-														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-															<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-															<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-														</svg>
-													</a>
-													<a href="javascript:void(0)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#lihatPembayaran<?= $data->id_konsultasi ?>">Status
-														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-															<circle cx="12" cy="12" r="10"></circle>
-															<line x1="12" y1="16" x2="12" y2="12"></line>
-															<line x1="12" y1="8" x2="12.01" y2="8"></line>
-														</svg>
-													</a>
-													<!-- Start Modal Setuju -->
-													<div class="modal fade text-left" id="setujuKonsultasi<?= $data->id_konsultasi ?>" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-														<div class="modal-dialog modal-dialog-centered" role="document">
-															<div class="modal-content">
-																<form action="<?= base_url('admin/jadwal/setujui_konsultasi/' . $data->id_konsultasi) ?>" method="POST">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal</h5>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																		</button>
-																	</div>
-																	<div class="modal-body">
-																		<div class="row">
-																			<div class="col-md-12 mx-auto">
-																				<div class="row">
-																					<div class="col-md-12">
-																						<div class="form-group">
-																							<label for="email">Link Konsultasi</label>
-																							<input name="meet" class="form-control text-black" type="text" placeholder="Masukkan link meet">
-																							<span class="form-text text-warning">Link akan terkirim ke email pasien </span>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Batal</button>
-																		<button type="submit" class="btn btn-primary">Setujui</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<!--End Modal Setuju -->
-													<!-- Start Modal Lihat Pembayaran -->
-													<div class="modal fade text-left" id="lihatPembayaran<?= $data->id_konsultasi ?>" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-														<div class="modal-dialog modal-dialog-centered" role="document">
-															<div class="modal-content">
-																<form action="<?= base_url('dokter/jadwal/proses_tambah_jadwal') ?>" method="POST">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel">Lihat Pembayaran </h5>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																		</button>
-																	</div>
-																	<div class="modal-body">
-																		<div class="row">
-																			<div class="col-md-12 mx-auto">
-																				<div class="row">
-																					<div class="col-md-12">
-																						<label class="mb-4" for="email">Kode Bayar : <?= $data->kode_bayar ?></label>
-																						<div class="form-group">
-																							<img style="width: 300px; height: 300px;" src="<?= base_url('uploads/pembayaran/') . $data->foto_pembayaran ?>" alt="">
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>Tutup</button>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<!--End Modal Lihat Pembayaran -->
-												<?php } else { ?>
-													<a href="javascript:void(0)" style="cursor: not-allowed !important;" class="btn btn-warning btn-sm">Setujui
-														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-															<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-															<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-														</svg>
-													</a>
-												<?php } ?>
-											<?php break;
 											case "Disetujui": ?>
-												<button class="btn btn-primary btn-sm">Menunggu Selesai
+												<button style="cursor: not-allowed !important;" disabled class="btn btn-primary btn-sm">Menunggu Selesai
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
 														<polyline points="20 6 9 17 4 12"></polyline>
 													</svg>

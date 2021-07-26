@@ -111,7 +111,6 @@
 <div class="sidebar-overlay" data-reff="#side_menu"></div>
 
 <!-- jQuery -->
-<script src="<?= base_url('assets/pasien/') ?>js/jquery-3.5.1.min.js"></script>
 
 <!-- Bootstrap Core JS -->
 <script src="<?= base_url('assets/pasien/') ?>js/popper.min.js"></script>
@@ -125,7 +124,7 @@
 <!-- Select2 JS -->
 <script src="<?= base_url('assets/pasien/') ?>js/select2.min.js"></script>
 <script src="<?= base_url('assets/pasien/') ?>js/moment.min.js"></script>
-<script type="text/javascript" src="<?= base_url('assets/pasien/') ?>dropify/js/dropify.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.dropify').dropify({
@@ -142,22 +141,7 @@
 <script src="<?= base_url('assets/pasien/') ?>js/bootstrap-datetimepicker.min.js"></script>
 <script src="<?= base_url('assets/pasien/') ?>js/datepicker.js"></script>
 <script src="<?= base_url('assets/pasien/') ?>js/theme.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.timepicker').timepicker({
-			timeFormat: 'H:mm',
-			interval: 60,
-			minTime: '08',
-			maxTime: '8:00pm',
-			defaultTime: '11',
-			startTime: '08:00',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true
-		});
-	});
-</script>
+
 
 </body>
 
