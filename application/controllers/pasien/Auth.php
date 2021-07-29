@@ -101,6 +101,7 @@ class Auth extends CI_Controller
 				'password' 	  => password_hash($password, PASSWORD_DEFAULT),
 				'email'       => $email,
 				'nama_pasien' => htmlspecialchars($nama_pasien),
+				'tgl_buat' => date("Y-m-d"),
 			];
 			$this->AuthModel->tambah_pasien($data);
 			$this->session->set_flashdata('flash', 'Akun berhasil dibuat');
