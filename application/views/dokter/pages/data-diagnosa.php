@@ -27,8 +27,8 @@
 								<th>No Konsultasi</th>
 								<th>No Rekam Medis</th>
 								<th>Nama Pasien</th>
-								<th>Tanggal Diagnosa</th>
-								<th class="text-center">Foto Diagnosa</th>
+								<th>Tanggal Pemeriksaan</th>
+								<th class="text-center">Foto Pemeriksaan</th>
 								<th class="dt-no-sorting text-center">Aksi</th>
 							</tr>
 						</thead>
@@ -59,13 +59,15 @@
 												</button>
 											</a>
 										<?php    } else { ?>
-											<button type="button" class="btn btn-info btn-sm"> Info
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
-													<circle cx="12" cy="12" r="10"></circle>
-													<line x1="12" y1="16" x2="12" y2="12"></line>
-													<line x1="12" y1="8" x2="12.01" y2="8"></line>
-												</svg>
-											</button>
+											<a href="<?= base_url('dokter/diagnosa/info_diagnosa/' . $row->id_konsultasi) ?>">
+												<button type="button" class="btn btn-info btn-sm"> Info
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
+														<circle cx="12" cy="12" r="10"></circle>
+														<line x1="12" y1="16" x2="12" y2="12"></line>
+														<line x1="12" y1="8" x2="12.01" y2="8"></line>
+													</svg>
+												</button>
+											</a>
 											<a href="<?= base_url('dokter/diagnosa/input_diagnosa/' . $row->id_konsultasi) ?>">
 												<button class="btn btn-warning btn-sm">Sunting
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -82,14 +84,14 @@
 									<div class="modal-dialog modal-dialog-centered" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Foto Diagnosa</h5>
+												<h5 class="modal-title" id="exampleModalLabel">Foto Pemeriksaan</h5>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												</button>
 											</div>
 											<div class="modal-body">
 												<div class="row">
 													<div class="col-md-12 mx-auto">
-														<input type="file" disabled class="dropify" data-default-file="imagePath">
+														<input type="file" disabled class="dropify" data-default-file="<?= base_url('uploads/diagnosa/' . $row->foto_pemeriksaan) ?>">
 													</div>
 												</div>
 											</div>
@@ -107,8 +109,8 @@
 								<th>No Konsultasi</th>
 								<th>No Rekam Medis</th>
 								<th>Nama Pasien</th>
-								<th>Tanggal Diagnosa</th>
-								<th>Foto Diagnosa</th>
+								<th>Tanggal Pemeriksaan</th>
+								<th>Foto Pemeriksaan</th>
 								<th class="invisible"></th>
 							</tr>
 						</tfoot>

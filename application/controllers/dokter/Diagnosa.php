@@ -34,6 +34,16 @@ class Diagnosa extends CI_Controller
 		$this->load->view('dokter/pages/diagnosa', $data);
 		$this->load->view('dokter/layouts/footer');
 	}
+	public function info_diagnosa($id_konsultasi)
+	{
+		$data['diagnosa'] = $this->DiagnosaModel->get_diagnosa($id_konsultasi)->row();
+		$data['obat'] = $this->DiagnosaModel->get_obat()->result();
+		$data['konsultasi'] = $this->DiagnosaModel->get_resep_konsultasi($id_konsultasi)->result();
+		$data['id_konsultasi'] = $id_konsultasi;
+		$this->load->view('dokter/layouts/header');
+		$this->load->view('dokter/pages/info-diagnosa', $data);
+		$this->load->view('dokter/layouts/footer');
+	}
 
 	public function proses_tambah_diagnosa($id_konsultasi)
 	{
