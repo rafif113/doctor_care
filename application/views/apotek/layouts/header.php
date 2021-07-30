@@ -22,9 +22,6 @@
 	<link href="<?= base_url('assets/admin/') ?>assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/admin/') ?>assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/admin/') ?>plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-	<!-- <script src="<?= base_url('assets/admin/') ?>plugins/sweetalerts/promise-polyfill.js"></script>
-	<link href="<?= base_url('assets/admin/') ?>plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-	<link href="<?= base_url('assets/admin/') ?>plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" /> -->
 	<link href="<?= base_url('assets/admin/') ?>assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
@@ -71,7 +68,9 @@
 			</ul>
 
 			<ul class="navbar-item flex-row ml-md-auto">
-
+				<li>
+					<h6 class="mt-3 text-white">Selamat Datang <?= $this->session->nama_admin; ?>!</h6>
+				</li>
 				<li class="nav-item dropdown user-profile-dropdown">
 					<a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 
@@ -84,12 +83,6 @@
 					</a>
 					<div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
 						<div class="">
-							<div class="dropdown-item">
-								<a class="" href="<?= base_url('apotek/profile') ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
-										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-										<circle cx="12" cy="7" r="4"></circle>
-									</svg> Profile</a>
-							</div>
 							<div class="dropdown-item">
 								<a class="" href="<?= base_url('apotek/auth/logout') ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
 										<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>

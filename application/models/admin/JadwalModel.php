@@ -6,7 +6,11 @@ class JadwalModel extends CI_Model
 
 	public function get_jadwal()
 	{
-		return $this->db->get('jadwal');
+		$this->db->select('id_jadwal,tanggal,jam_mulai,jam_berakhir,nama_dokter,jadwal.id_dokter');
+		$this->db->from('jadwal');
+		$this->db->join('dokter', 'dokter.id_dokter = jadwal.id_dokter');
+		$query = $this->db->get();
+		return $query;
 	}
 
 	public function get_konsultasi()
@@ -40,6 +44,12 @@ class JadwalModel extends CI_Model
 	{
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		return $this->db->update('pendaftaran_konsultasi', $data);
+	}
+
+	public function update_jadwal($id_jadwal, $data)
+	{
+		$this->db->where('id_jadwal', $id_jadwal);
+		return $this->db->update('jadwal', $data);
 	}
 
 	public function update_pembayaran($id_konsultasi, $data)

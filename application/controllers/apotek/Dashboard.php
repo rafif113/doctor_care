@@ -25,6 +25,7 @@ class Dashboard extends CI_Controller
 	{
 		$data['konsultasi'] = $this->ObatModel->get_resep_konsultasi($id_konsultasi)->result();
 		if (!$data['konsultasi']) {
+			$this->session->set_flashdata('tebus', 'Pasien belum melakukan tebus obat');
 			redirect(base_url('apotek/'));
 		}
 		$data['pasien'] = $this->ObatModel->get_validasi_resep($id_konsultasi)->row();

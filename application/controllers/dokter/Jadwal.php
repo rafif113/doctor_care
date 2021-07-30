@@ -24,13 +24,6 @@ class Jadwal extends CI_Controller
 		$this->load->view('dokter/layouts/footer');
 	}
 
-	public function tambah_jadwal()
-	{
-		$this->load->view('dokter/layouts/header');
-		$this->load->view('dokter/pages/jadwal/tambah-jadwal');
-		$this->load->view('dokter/layouts/footer');
-	}
-
 	public function proses_tambah_jadwal()
 	{
 		$id_jadwal 	  = $this->JadwalModel->id_jadwal();
@@ -47,6 +40,20 @@ class Jadwal extends CI_Controller
 			'jam_berakhir'	=> $jam_berakhir,
 		];
 		$this->JadwalModel->tambah_jadwal($data);
+		redirect(base_url('dokter/jadwal'));
+	}
+
+	public function proses_update_jadwal($id_jadwal)
+	{
+		$tanggal      = $this->input->post('tanggal');
+		$jam_mulai 	  = $this->input->post('jam_mulai');
+		$jam_berakhir = $this->input->post('jam_berakhir');
+		$data = [
+			'tanggal' 		=> $tanggal,
+			'jam_mulai'		=> $jam_mulai,
+			'jam_berakhir'	=> $jam_berakhir,
+		];
+		$this->JadwalModel->update_jadwal($id_jadwal, $data);
 		redirect(base_url('dokter/jadwal'));
 	}
 

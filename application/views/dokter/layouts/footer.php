@@ -45,7 +45,7 @@
 <script src="<?= base_url('assets/admin/') ?>plugins/blockui/jquery.blockUI.min.js"></script>
 <script src="<?= base_url('assets/admin/') ?>plugins/tagInput/tags-input.js"></script>
 <script src="<?= base_url('assets/admin/') ?>assets/js/users/account-settings.js"></script>
-<script src="<?= base_url('assets/admin/') ?>plugins/apex/apexcharts.min.js"></script>
+
 <script src="<?= base_url('assets/admin/') ?>assets/js/dashboard/dash_2.js"></script>
 
 <script src="<?= base_url('assets/admin/') ?>plugins/table/datatable/datatables.js"></script>
@@ -76,46 +76,6 @@
 	});
 </script>
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-<script>
-	var options = {
-		chart: {
-			height: 350,
-			type: 'bar',
-			toolbar: {
-				show: false,
-			}
-		},
-		series: [{
-			name: 'Pasien Konsultasi',
-			type: 'column',
-			data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
-		}],
-		stroke: {
-			width: [0, 4]
-		},
-		title: {
-			// text: 'Grafik Pasien'
-		},
-		labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
-		xaxis: {
-			type: 'datetime'
-		},
-		yaxis: [{
-			title: {
-				text: 'Pasien Konsultasi',
-			},
-
-		}]
-
-	}
-
-	var chart = new ApexCharts(
-		document.querySelector("#mixed-chart"),
-		options
-	);
-
-	chart.render();
-</script>
 </body>
 
 

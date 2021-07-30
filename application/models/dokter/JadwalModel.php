@@ -45,6 +45,12 @@ class JadwalModel extends CI_Model
 		return $this->db->insert('reschedule', $data);
 	}
 
+	public function update_jadwal($id_jadwal, $data)
+	{
+		$this->db->where('id_jadwal', $id_jadwal);
+		return $this->db->update('jadwal', $data);
+	}
+
 	public function get_single_jadwal()
 	{
 		$id_dokter = $this->session->id_dokter;

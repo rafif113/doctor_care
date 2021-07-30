@@ -74,4 +74,18 @@ class Jadwal extends CI_Controller
 
 		redirect(base_url('admin/kelola/pembayaran'));
 	}
+
+	public function proses_update_jadwal($id_jadwal)
+	{
+		$tanggal      = $this->input->post('tanggal');
+		$jam_mulai 	  = $this->input->post('jam_mulai');
+		$jam_berakhir = $this->input->post('jam_berakhir');
+		$data = [
+			'tanggal' 		=> $tanggal,
+			'jam_mulai'		=> $jam_mulai,
+			'jam_berakhir'	=> $jam_berakhir,
+		];
+		$this->JadwalModel->update_jadwal($id_jadwal, $data);
+		redirect(base_url('admin/jadwal'));
+	}
 }

@@ -59,4 +59,11 @@ class ObatModel extends CI_Model
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		return $this->db->update('resep', $data_centang);
 	}
+
+	public function delete_obat($id_obat)
+	{
+		$this->db->where("id_obat", $id_obat);
+		$this->db->delete("obat");
+		return true;
+	}
 }

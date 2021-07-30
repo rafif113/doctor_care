@@ -83,3 +83,44 @@
  		</div>
 
  	</div>
+ 	<script src="<?= base_url('assets/admin/') ?>plugins/apex/apexcharts.min.js"></script>
+ 	<script>
+ 		var options = {
+ 			chart: {
+ 				height: 350,
+ 				type: 'bar',
+ 				toolbar: {
+ 					show: false,
+ 				}
+ 			},
+ 			series: [{
+ 				name: 'Pasien Konsultasi',
+ 				type: 'column',
+ 				data: [<?= $month2 ?>, <?= $month1 ?>, <?= $week3 ?>, <?= $week2 ?>, <?= $week1 ?>]
+ 			}],
+ 			stroke: {
+ 				width: [0, 4]
+ 			},
+ 			title: {
+ 				// text: 'Grafik Pasien'
+ 			},
+ 			labels: ['< 2 Bulan', '< 1 Bulan', '< 3 Minggu', '< 2 Minggu', '< 1 Minggu'],
+ 			xaxis: {
+ 				type: 'date'
+ 			},
+ 			yaxis: [{
+ 				title: {
+ 					text: 'Pasien Konsultasi',
+ 				},
+
+ 			}]
+
+ 		}
+
+ 		var chart = new ApexCharts(
+ 			document.querySelector("#mixed-chart"),
+ 			options
+ 		);
+
+ 		chart.render();
+ 	</script>

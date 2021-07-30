@@ -67,8 +67,8 @@
 			[0, "asc"]
 		],
 		"stripeClasses": [],
-		"lengthMenu": [5, 10, 20, 50],
-		"pageLength": 5,
+		"lengthMenu": [10, 20, 50],
+		"pageLength": 10,
 		drawCallback: function() {
 			$('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered');
 		}
