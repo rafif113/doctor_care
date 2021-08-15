@@ -121,6 +121,15 @@
 														<input type="file" name="foto_pemeriksaan" class="form-control mb-4 dropify">
 													</div>
 												</div>
+												<?php if ($diagnosa->foto_pemeriksaan != NULL) : ?>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label>Foto Pemeriksaan</label>
+															<input type="file" disabled class="mb-4 dropify" data-default-file="<?= base_url('uploads/diagnosa/' . $diagnosa->foto_pemeriksaan) ?>">
+															<!-- <img src="<?= base_url('uploads/diagnosa/' . $diagnosa->foto_pemeriksaan) ?>" class="img-fluid rounded"> -->
+														</div>
+													</div>
+												<?php endif; ?>
 											</div>
 											<button class="btn btn-primary mb-2">Tambah Diagnosa</button>
 										</div>

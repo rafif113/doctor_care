@@ -89,7 +89,9 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
-		$this->session->sess_destroy();
+		$this->session->unset_userdata('id_admin');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('nama_admin');
 		redirect(base_url('admin/auth'));
 	}
 }

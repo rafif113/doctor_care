@@ -246,8 +246,8 @@
 	if (flashData) {
 		Swal.fire({
 			icon: 'warning',
-			title: 'Data Diagnosa',
-			text: 'Data diagnosa belum diinput oleh dokter'
+			title: 'Diagnosa',
+			text: 'Data diagnosa tidak ada.'
 		});
 	}
 </script>

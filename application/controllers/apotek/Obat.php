@@ -7,8 +7,7 @@ class Obat extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-		if (!$this->session->username) {
+		if (!$this->session->id_admin_apotek) {
 			redirect(base_url('apotek/auth'));
 		}
 		$this->load->model('apotek/ObatModel', 'ObatModel');

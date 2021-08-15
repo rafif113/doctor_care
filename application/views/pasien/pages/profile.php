@@ -77,12 +77,14 @@
 															<div class="form-group">
 																<label>Nama Lengkap</label>
 																<input class="form-control" type="text" name="nama_pasien" placeholder="Nama Lengkap" value="<?= $profile->nama_pasien ?>">
+																<small class="form-text text-danger"><?= form_error('nama_pasien'); ?></small>
 															</div>
 														</div>
 														<div class="col">
 															<div class="form-group">
 																<label>Username</label>
 																<input class="form-control" type="text" name="username" placeholder="username" value="<?= $profile->username ?>">
+																<small class="form-text text-danger"><?= form_error('username'); ?></small>
 															</div>
 														</div>
 													</div>
@@ -91,12 +93,14 @@
 															<div class="form-group">
 																<label>Email</label>
 																<input class="form-control" type="text" name="email" placeholder="email" value="<?= $profile->email ?>">
+																<small class="form-text text-danger"><?= form_error('email'); ?></small>
 															</div>
 														</div>
 														<div class="col">
 															<div class="form-group">
 																<label>No HP</label>
 																<input class="form-control" type="number" name="no_hp" placeholder="No HP" value="<?= $profile->no_hp ?>">
+																<small class="form-text text-danger"><?= form_error('no_hp'); ?></small>
 															</div>
 														</div>
 													</div>
@@ -106,6 +110,7 @@
 																<label>No Telepon Rumah</label>
 																<input class="form-control" type="text" name="no_telepon_rumah" placeholder="No Telepon Rumah" value="<?= $profile->no_telepon_rumah ?>">
 																<span class="text-muted">*Jika tidak memiliki no telpon isi dengan -</span>
+																<small class="form-text text-danger"><?= form_error('no_telepon_rumah'); ?></small>
 															</div>
 														</div>
 														<div class="col">
@@ -121,6 +126,7 @@
 																	<option value="Laki-laki" <?php echo set_select('jenis_kelamin', 'Laki-laki', (!empty($data) && $data == "Laki-laki" ? TRUE : FALSE)); ?>>Laki-laki</option>
 																	<option value="Perempuan" <?php echo set_select('jenis_kelamin', 'Perempuan', (!empty($data) && $data == "Perempuan" ? TRUE : FALSE)); ?>>Perempuan</option>
 																</select>
+																<small class="form-text text-danger"><?= form_error('jenis_kelamin'); ?></small>
 															</div>
 														</div>
 													</div>
@@ -129,12 +135,14 @@
 															<div class="form-group">
 																<label>Tanggal Lahir</label>
 																<input class="form-control" type="date" name="tgl_lahir" value="<?php echo $profile->tgl_lahir ?>">
+																<small class="form-text text-danger"><?= form_error('tgl_lahir'); ?></small>
 															</div>
 														</div>
 														<div class="col">
 															<div class="form-group">
 																<label>No KTP</label>
 																<input class="form-control" type="number" name="no_ktp" value="<?= $profile->no_ktp ?>">
+																<small class="form-text text-danger"><?= form_error('no_ktp'); ?></small>
 															</div>
 														</div>
 													</div>
@@ -143,6 +151,7 @@
 															<div class="form-group">
 																<label>Alamat</label>
 																<textarea class="form-control" name="alamat" cols="30" rows="5"><?= $profile->alamat ?></textarea>
+																<small class="form-text text-danger"><?= form_error('alamat'); ?></small>
 															</div>
 														</div>
 													</div>

@@ -24,31 +24,44 @@ class Profile extends CI_Controller
 
 	public function update_profile($id_pasien)
 	{
-		$nama_pasien = $this->input->post('nama_pasien');
-		$email = $this->input->post('email');
-		$username = $this->input->post('username');
-		$jenis_kelamin = $this->input->post('jenis_kelamin');
-		$alamat = $this->input->post('alamat');
-		$no_ktp = $this->input->post('no_ktp');
-		$no_telepon_rumah = $this->input->post('no_telepon_rumah');
-		$no_hp = $this->input->post('no_hp');
-		$tgl_lahir = $this->input->post('tgl_lahir');
+		$this->form_validation->set_rules('nama_pasien', 'Nama Pasien', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('no_ktp', 'No KTP', 'required|exact_length[16]|numeric');
+		$this->form_validation->set_rules('no_hp', 'No Hp', 'required|min_length[10]|numeric');
+		$this->form_validation->set_rules('no_telepon_rumah', 'No Telepon', 'required');
+		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->index();
+		} else {
+			$nama_pasien = $this->input->post('nama_pasien');
+			$email = $this->input->post('email');
+			$username = $this->input->post('username');
+			$jenis_kelamin = $this->input->post('jenis_kelamin');
+			$alamat = $this->input->post('alamat');
+			$no_ktp = $this->input->post('no_ktp');
+			$no_telepon_rumah = $this->input->post('no_telepon_rumah');
+			$no_hp = $this->input->post('no_hp');
+			$tgl_lahir = $this->input->post('tgl_lahir');
 
-		$data_pasien = [
-			'nama_pasien' => $nama_pasien,
-			'email' => $email,
-			'username' => $username,
-			'jenis_kelamin' => $jenis_kelamin,
-			'no_hp' => $no_hp,
-			'no_telepon_rumah' => $no_telepon_rumah,
-			'tgl_lahir' => $tgl_lahir,
-			'alamat' => $alamat,
-			'no_ktp' => $no_ktp,
-		];
-		$query = $this->ProfileModel->update_pasien($id_pasien, $data_pasien);
-		if ($query) {
-			$this->session->set_flashdata('flash', 'Update');
-			redirect(base_url('pasien/profile'));
+			$data_pasien = [
+				'nama_pasien' => $nama_pasien,
+				'email' => $email,
+				'username' => $username,
+				'jenis_kelamin' => $jenis_kelamin,
+				'no_hp' => $no_hp,
+				'no_telepon_rumah' => $no_telepon_rumah,
+				'tgl_lahir' => $tgl_lahir,
+				'alamat' => $alamat,
+				'no_ktp' => $no_ktp,
+			];
+			$query = $this->ProfileModel->update_pasien($id_pasien, $data_pasien);
+			if ($query) {
+				$this->session->set_flashdata('flash', 'Update');
+				redirect(base_url('pasien/profile'));
+			}
 		}
 	}
 

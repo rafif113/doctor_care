@@ -13,6 +13,9 @@
 									<p>
 										<span class="depart"><?= $dokter->keahlian ?></span>
 									</p>
+									<p>
+										<span class="depart">NO STR : <?= $dokter->STR ?></span>
+									</p>
 								</div>
 								<ul class="social-list">
 									<li>

@@ -10,7 +10,6 @@ class Konsultasi extends CI_Controller
 		if (!$this->session->id_pasien) {
 			redirect(base_url('pasien/auth'));
 		}
-
 		$this->load->helper('string');
 		$this->load->model('pasien/DokterModel', 'DokterModel');
 		$this->load->model('pasien/KonsultasiModel', 'KonsultasiModel');
@@ -134,7 +133,6 @@ class Konsultasi extends CI_Controller
 				'status_bayar' 	  => 'Terbayar',
 				'tgl_pembayaran'  => date("Y-m-d"),
 			];
-
 			$this->PembayaranModel->update_pembayaran($id_pembayaran, $data_pembayaran);
 			redirect(base_url('pasien/konsultasi/jadwal'));
 		}
