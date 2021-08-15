@@ -7,8 +7,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-	<title>Register Boxed | CORK - Multipurpose Bootstrap Dashboard Template </title>
-	<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+	<title>Admin Dokter Care</title>
+	<link rel="icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png" />
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
 	<link href="<?= base_url('assets/admin/') ?>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -36,7 +36,7 @@
 					<div class="form-content">
 
 						<h1 class="">Register Admin</h1>
-						<p class="signup-link register">Already have an account? <a href="<?= base_url('admin/auth') ?>">Log in</a></p>
+						<p class="signup-link register">Sudah mempunyai akun Admin? <a href="<?= base_url('admin/auth') ?>">Log in</a></p>
 						<form class="text-left" action="<?= base_url('admin/auth/proses_registrasi') ?>" method="POST">
 							<div class="form">
 
@@ -78,7 +78,7 @@
 
 								<div id="password-field" class="field-wrapper input mb-2">
 									<div class="d-flex justify-content-between">
-										<label for="password">RE-TYPE PASSWORD</label>
+										<label for="password">ULANG PASSWORD</label>
 									</div>
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
 										<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>

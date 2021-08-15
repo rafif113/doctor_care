@@ -39,8 +39,8 @@ class Auth extends CI_Controller
 				if (password_verify($password, $user['password'])) {
 					$data = [
 						'id_admin_apotek'   => $user['id_admin_apotek'],
-						'username'    => $user['username'],
-						'nama_admin' => $user['nama_admin'],
+						'username_apotek'    => $user['username'],
+						'nama_admin_apotek' => $user['nama_admin'],
 					];
 					$this->session->set_userdata($data);
 					redirect('apotek');
@@ -90,8 +90,8 @@ class Auth extends CI_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata('id_admin_apotek');
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('nama_admin');
+		$this->session->unset_userdata('username_apotek');
+		$this->session->unset_userdata('nama_admin_apotek');
 		redirect(base_url('apotek/auth'));
 	}
 }

@@ -37,19 +37,24 @@ class Auth extends CI_Controller
 			$user = $this->db->get_where('dokter', ['username' => $username])->row_array();
 			if ($user) {
 				if (password_verify($password, $user['password'])) {
-					$data = [
-						'id_dokter'   => $user['id_dokter'],
-						'nama_dokter' => $user['nama_dokter'],
-						'foto' 		  => $user['foto'],
-					];
-					$this->session->set_userdata($data);
-					redirect('dokter');
+					if ($user['status'] === "Aktif") {
+						$data = [
+							'id_dokter'   => $user['id_dokter'],
+							'nama_dokter' => $user['nama_dokter'],
+							'foto' 		  => $user['foto'],
+						];
+						$this->session->set_userdata($data);
+						redirect('dokter');
+					} else {
+						$this->session->set_flashdata('message', 'Akun anda tidak aktif, Harap hubungi admin untuk mengaktifkan kembali!');
+						redirect('dokter/auth');
+					}
 				} else {
-					$this->session->set_flashdata('message', 'Pasword Salah');
+					$this->session->set_flashdata('message', 'Password atau username Salah');
 					redirect('dokter/auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', 'Akun tidak ditemukan');
+				$this->session->set_flashdata('message', 'Password atau username Salah');
 				redirect('dokter/auth');
 			}
 		}

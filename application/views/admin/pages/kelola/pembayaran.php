@@ -61,7 +61,7 @@
 													<div class="modal-body">
 														<div class="row">
 															<div class="col-md-12 mx-auto">
-																<input type="file" disabled class="dropify" data-default-file="<?= base_url('uploads/pembayaran/') . $data->foto_pembayaran ?>">
+																<img class="img-thumbnail" src="<?= base_url('uploads/pembayaran/') . $data->foto_pembayaran ?>" alt="">
 															</div>
 														</div>
 													</div>

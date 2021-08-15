@@ -36,24 +36,28 @@
 												<option value="<?= $data->id_obat ?>" <?php echo set_select('id_obat', $data->id_obat, (!empty($data) && $data == $data->id_obat ? TRUE : FALSE)); ?>><?= $data->nama_obat ?></option>
 											<?php } ?>
 										</select>
+										<span class="form-text text-danger"><?= form_error('id_obat'); ?></span>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">Cara Pakai</label>
 										<input type="text" name="cara_pakai" class="form-control">
+										<span class="form-text text-danger"><?= form_error('cara_pakai'); ?></span>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">Dosis</label>
 										<input type="text" name="dosis" class="form-control">
+										<span class="form-text text-danger"><?= form_error('dosis'); ?></span>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="email">No Record</label>
 										<input type="text" name="no_record" class="form-control">
+										<span class="form-text text-danger"><?= form_error('no_record'); ?></span>
 									</div>
 								</div>
 							</div>
@@ -80,9 +84,9 @@
 					<!-- Start Diagnosa -->
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-							<form class="section contact" action="<?= base_url('dokter/diagnosa/proses_tambah_diagnosa/' . $id_konsultasi) ?>" method="POST" enctype="multipart/form-data">
+							<form class="section contact" action="<?= base_url('dokter/diagnosa/proses_edit_diagnosa/' . $id_konsultasi) ?>" method="POST" enctype="multipart/form-data">
 								<div class="info">
-									<h5 class="">Input Diagnosa</h5>
+									<h5 class="">Edit Diagnosa</h5>
 									<div class="row">
 										<div class="col-md-11 mx-auto">
 											<div class="row">
@@ -131,7 +135,7 @@
 													</div>
 												<?php endif; ?>
 											</div>
-											<button class="btn btn-primary mb-2">Tambah Diagnosa</button>
+											<button class="btn btn-primary mb-2">Edit Diagnosa</button>
 										</div>
 									</div>
 								</div>

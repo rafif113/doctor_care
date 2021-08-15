@@ -3,10 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class DokterModel extends CI_Model
 {
-
 	public function get_dokter()
 	{
-		return $this->db->get('dokter');
+		return $this->db->get_where('dokter', ['status' => "Aktif"]);
 	}
 
 	public function get_single_dokter($id_dokter)

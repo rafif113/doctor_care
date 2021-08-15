@@ -6,8 +6,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-	<title>CORK Admin - Multipurpose Bootstrap Dashboard Template </title>
-	<link rel="icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/favicon.ico" />
+	<title>Admin Doktor Care</title>
+	<link rel="icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png" />
 	<link href="<?= base_url('assets/admin/') ?>assets/css/loader.css" rel="stylesheet" type="text/css" />
 	<script src="<?= base_url('assets/admin/') ?>assets/js/loader.js"></script>
 
@@ -55,20 +55,6 @@
 				</li>
 				<li class="nav-item theme-text">
 					<a href="<?= base_url('admin/jadwal') ?>" class="nav-link"> DOKTORCARE </a>
-				</li>
-			</ul>
-
-			<ul class="navbar-item flex-row ml-md-0 ml-auto">
-				<li class="nav-item align-self-center search-animated">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search">
-						<circle cx="11" cy="11" r="8"></circle>
-						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-					</svg>
-					<form class="form-inline search-full form-inline search" role="search">
-						<div class="search-bar">
-							<input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
-						</div>
-					</form>
 				</li>
 			</ul>
 

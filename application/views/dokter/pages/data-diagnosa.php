@@ -91,7 +91,7 @@
 											<div class="modal-body">
 												<div class="row">
 													<div class="col-md-12 mx-auto">
-														<input type="file" disabled class="dropify" data-default-file="<?= base_url('uploads/diagnosa/' . $row->foto_pemeriksaan) ?>">
+														<img class="img-thumbnail" src="<?= base_url('uploads/diagnosa/' . $row->foto_pemeriksaan) ?>" alt="">
 													</div>
 												</div>
 											</div>

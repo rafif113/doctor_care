@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Medifab - Health &amp; Medical HTML Template</title>
+	<title>Dokter Care</title>
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/admin/') ?>assets/img/doctor-care.png">

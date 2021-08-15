@@ -89,36 +89,38 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label>No Rekam Medis</label>
-														<input type="text" name="no_rekam_medis" class="form-control mb-4" placeholder="No rekam medis" value="<?= $diagnosa->no_rekam_medis ?>">
+														<input type="text" name="no_rekam_medis" class="form-control" placeholder="No rekam medis" value="<?= set_value('no_rekam_medis') ?>">
+														<span class="form-text text-danger" style="color: red !important;"><?= form_error('no_rekam_medis'); ?></span>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Tanggal</label>
-														<input id="myDate" name="tanggal" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Tanggal.." value="<?= $diagnosa->tanggal ?>">
+														<input id="myDate" name="tanggal" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Tanggal.." value="<?= set_value('tanggal') ?>">
+														<span class="form-text text-danger"><?= form_error('tanggal'); ?></span>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Jam</label>
-														<input id="myID" data-enable-time="true" name="jam" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Jam.." value="<?= $diagnosa->jam ?>">
+														<input id="myID" data-enable-time="true" name="jam" class="form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Pilih Jam.." value="<?= set_value('jam') ?>">
+														<span class="form-text text-danger"><?= form_error('jam'); ?></span>
 													</div>
 												</div>
-
 											</div>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label>Diagnosa</label>
-														<textarea name="diagnosa" class="form-control mb-4" cols="30" rows="6"><?= $diagnosa->diagnosa ?></textarea>
+														<textarea name="diagnosa" class="form-control mb-4" cols="30" rows="8"><?= set_value('diagnosa') ?></textarea>
+														<span class="form-text text-danger"><?= form_error('diagnosa'); ?></span>
 													</div>
 												</div>
-											</div>
-											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<label>Foto Pemeriksaan</label>
 														<input type="file" name="foto_pemeriksaan" class="form-control mb-4 dropify">
+														<span class="form-text text-danger"><?= form_error('foto_pemeriksaan'); ?></span>
 													</div>
 												</div>
 											</div>
@@ -130,68 +132,6 @@
 						</div>
 					</div>
 					<!-- End Diagnosa -->
-					<!-- Start Obat -->
-					<!-- End Obat -->
-					<div class="row layout-top-spacing">
-						<div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-							<div class="section contact">
-								<div class="info">
-									<h5 class="">Input Resep Obat</h5>
-									<div class="row">
-										<div class="col-md-11 mx-auto">
-											<button class="btn btn-primary mb-2" data-toggle="modal" data-target="#resep">Tambah Resep</button>
-											<table id="default-ordering" class="table table-hover">
-												<thead>
-													<tr>
-														<th>No.</th>
-														<th>Nama Obat</th>
-														<th>Cara Pakai</th>
-														<th>Dosis</th>
-														<th class="dt-no-sorting text-center">Aksi</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php $no = 1;
-													foreach ($konsultasi as $data) { ?>
-														<tr>
-															<td><?= $no++ ?>.</td>
-															<td><?= $data->nama_obat ?></td>
-															<td><?= $data->cara_pakai ?></td>
-															<td><?= $data->dosis ?></td>
-															<td>
-																<center>
-																	<form action="<?= base_url('dokter/diagnosa/hapus_resep/' . $id_konsultasi) ?>" method="POST">
-																		<input type="hidden" name="id_obat" value="<?= $data->id_obat ?>">
-																		<input type="hidden" name="id_resep" value="<?= $data->id_resep ?>">
-																		<button class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus?');">Hapus Resep
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
-																				<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-																				<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-																			</svg>
-																		</button>
-																	</form>
-																</center>
-															</td>
-														</tr>
-													<?php } ?>
-												</tbody>
-												<tfoot>
-													<tr>
-														<th>No.</th>
-														<th>Nama Obat</th>
-														<th>Cara Pakai</th>
-														<th>Dosis</th>
-														<th class="invisible"></th>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

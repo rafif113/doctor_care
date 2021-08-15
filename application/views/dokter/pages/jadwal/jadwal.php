@@ -110,19 +110,19 @@
 																	<div class="col-md-12">
 																		<div class="form-group">
 																			<label for="email">Tanggal</label>
-																			<input name="tanggal" value="<?= date("Y-m-d") ?>" class="basicFlatpickr form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Select Date..">
+																			<input name="tanggal" value="<?= $data->tanggal ?>" class="basicFlatpickr form-control flatpickr flatpickr-input active text-black" type="text" placeholder="Select Date..">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="website1">Jam Mulai</label>
-																			<input name="jam_mulai" class="form-control flatpickr flatpickr-input active text-black timeFlatpickr" type="text" placeholder="Select Date..">
+																			<input value="<?= $data->jam_mulai ?>" name="jam_mulai" class="form-control flatpickr flatpickr-input active text-black timeFlatpickr12" type="text" placeholder="Select Date..">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="website2">Jam Berakhir</label>
-																			<input name="jam_berakhir" class="form-control flatpickr flatpickr-input active text-black timeFlatpickr2" type="text" placeholder="Select Date..">
+																			<input value="<?= $data->jam_berakhir ?>" name="jam_berakhir" class="form-control flatpickr flatpickr-input active text-black timeFlatpickr13" type="text" placeholder="Select Date..">
 																		</div>
 																	</div>
 																</div>
@@ -172,6 +172,20 @@
 			noCalendar: true,
 			dateFormat: "H:i",
 			defaultDate: "16:45"
+		});
+	</script>
+	<script>
+		var f4 = flatpickr(document.getElementsByClassName('timeFlatpickr12'), {
+			enableTime: true,
+			noCalendar: true,
+			dateFormat: "H:i",
+		});
+	</script>
+	<script>
+		var f4 = flatpickr(document.getElementsByClassName('timeFlatpickr13'), {
+			enableTime: true,
+			noCalendar: true,
+			dateFormat: "H:i",
 		});
 	</script>
 	<script>

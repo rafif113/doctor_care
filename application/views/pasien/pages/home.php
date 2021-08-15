@@ -57,8 +57,8 @@
 						<div class="feature-img">
 							<img width="60" height="60" alt="Consult with a Doctor" src="<?= base_url('assets/pasien/') ?>img/icon-02.png">
 						</div>
-						<h4>konsultasi dengan dokter</h4>
-						<p>Disini anda bisa konsultasi dengan dokter mengenai penyakit ataupun masalah k
+						<h4>Konsultasi dengan dokter</h4>
+						<p>Disini anda bisa konsultasi dengan dokter mengenai penyakit ataupun masalah kecantikan anda.
 						</p>
 					</div>
 				</div>
@@ -67,9 +67,8 @@
 						<div class="feature-img">
 							<img width="60" height="60" alt="Make a family Doctor" src="<?= base_url('assets/pasien/') ?>img/icon-03.png">
 						</div>
-						<h4>Make a family Doctor</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor.
+						<h4>Dokter cepat tanggap.</h4>
+						<p>Disini anda akan mendapatkan pelayanan terbaik dan juga dokter yang cepat tanggap dalam melayani anda.
 						</p>
 					</div>
 				</div>
