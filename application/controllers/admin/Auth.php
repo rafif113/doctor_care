@@ -23,7 +23,7 @@ class Auth extends CI_Controller
 	public function proses_login()
 	{
 		if ($this->session->userdata('id_admin')) {
-			redirect('admin/jadwal');
+			redirect('admin/kelola/daftar_pasien');
 		}
 
 		$this->form_validation->set_rules('username', 'Username', 'required');
@@ -43,7 +43,7 @@ class Auth extends CI_Controller
 						'nama_admin' => $user['nama_admin'],
 					];
 					$this->session->set_userdata($data);
-					redirect('admin/jadwal');
+					redirect('admin/kelola/daftar_pasien');
 				} else {
 					$this->session->set_flashdata('flash', 'Password Salah');
 					redirect('admin/auth');

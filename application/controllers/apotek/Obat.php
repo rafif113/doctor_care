@@ -15,6 +15,7 @@ class Obat extends CI_Controller
 
 	public function index()
 	{
+
 		$data['obat'] = $this->ObatModel->get_obat()->result();
 		$this->load->view('apotek/layouts/header');
 		$this->load->view('apotek/pages/obat/obat', $data);
