@@ -20,6 +20,7 @@ class DokterModel extends CI_Model
 		$this->db->join('dokter', 'dokter.id_dokter = jadwal.id_dokter');
 		$this->db->where('jadwal.id_dokter', $id_dokter);
 		$this->db->where('tanggal >=', $date);
+		$this->db->group_by('tanggal');
 		$query = $this->db->get();
 		return $query;
 	}

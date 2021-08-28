@@ -144,6 +144,8 @@
 		flatpickr("#myDate", {
 			enableTime: true,
 			dateFormat: "Y-m-d",
+			defaultDate: "today",
+			clickOpens: false
 		});
 	</script>
 	<script>
@@ -151,5 +153,7 @@
 			enableTime: true,
 			noCalendar: true,
 			dateFormat: "H:i",
+			defaultDate: new Date(),
+			clickOpens: false
 		});
 	</script>

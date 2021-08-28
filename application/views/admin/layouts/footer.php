@@ -63,8 +63,9 @@
 			"sSearchPlaceholder": "Cari...",
 			"sLengthMenu": "Jumlah :  _MENU_",
 		},
+		// "ordering": false,
 		"order": [
-			[0, "asc"]
+			[0, "desc"]
 		],
 		"stripeClasses": [],
 		"lengthMenu": [10, 20, 50],

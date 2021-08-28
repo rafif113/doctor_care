@@ -100,4 +100,8 @@ class KonsultasiModel extends CI_Model
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		return $this->db->update('resep', $data);
 	}
+	public function get_apotek()
+	{
+		return $this->db->get('apoteker');
+	}
 }

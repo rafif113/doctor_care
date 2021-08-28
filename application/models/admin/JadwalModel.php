@@ -9,6 +9,7 @@ class JadwalModel extends CI_Model
 		$this->db->select('id_jadwal,tanggal,jam_mulai,jam_berakhir,nama_dokter,jadwal.id_dokter');
 		$this->db->from('jadwal');
 		$this->db->join('dokter', 'dokter.id_dokter = jadwal.id_dokter');
+		$this->db->group_by('tanggal');
 		$query = $this->db->get();
 		return $query;
 	}

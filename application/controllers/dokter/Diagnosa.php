@@ -134,13 +134,11 @@ class Diagnosa extends CI_Controller
 			$diagnosa    		= $this->input->post('diagnosa');
 			$tanggal      		= $this->input->post('tanggal');
 			$jam 	  			= $this->input->post('jam');
-			$foto_pemeriksaan 	= $this->upload->data('file_name');
 			$data = [
 				'no_rekam_medis' 	=> $no_rekam_medis,
 				'diagnosa' 		 	=> $diagnosa,
 				'tanggal' 		 	=> $tanggal,
 				'jam'			 	=> $jam,
-				'foto_pemeriksaan'	=> $foto_pemeriksaan
 			];
 			$this->DiagnosaModel->update_diagnosa($id_konsultasi, $data);
 			$this->session->set_flashdata('flash', 'Berhasil Di Update');

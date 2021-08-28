@@ -174,6 +174,7 @@ class Konsultasi extends CI_Controller
 	public function diagnosa($id_konsultasi)
 	{
 		$data['resep'] = $this->KonsultasiModel->get_resep_konsultasi($id_konsultasi)->result();
+		$data['apotek'] = $this->KonsultasiModel->get_apotek()->result();
 		if (!count($data['resep'])) {
 			$this->session->set_flashdata('validasiDiagnosa', 'Diagnosa');
 			redirect(base_url('pasien/konsultasi/jadwal'));
@@ -188,6 +189,7 @@ class Konsultasi extends CI_Controller
 	public function tebus($id_konsultasi)
 	{
 		$data = [
+			'id_admin_apotek' => $this->input->post('id_admin_apotek'),
 			'validasi_pasien' => "Ditebus"
 		];
 		$data['validasi'] = $this->KonsultasiModel->update_resep($id_konsultasi, $data);

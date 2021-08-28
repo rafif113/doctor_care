@@ -9,6 +9,7 @@ class KelolaModel extends CI_Model
 		$this->db->from('pendaftaran_konsultasi');
 		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
 		$this->db->join('pembayaran', 'pembayaran.id_konsultasi = pendaftaran_konsultasi.id_konsultasi');
+		$this->db->order_by("pendaftaran_konsultasi.id_konsultasi", "DESC");
 		$query = $this->db->get();
 		return $query;
 	}

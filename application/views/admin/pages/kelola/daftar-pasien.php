@@ -20,11 +20,12 @@
 		<div class="row layout-top-spacing">
 
 			<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+				<h2></h2>
 				<div class="widget widget-card-four">
 					<div class="widget-content">
 						<div class="w-header">
 							<div class="w-info">
-								<h6 class="value">Pasien Keseluruhan</h6>
+								<h6 class="value">Pasien Mendaftar Dalam Periode 1 Tahun</h6>
 							</div>
 						</div>
 
@@ -44,7 +45,7 @@
 					<div class="widget-content">
 						<div class="w-header">
 							<div class="w-info">
-								<h6 class="value">Pasien Per-Minggu</h6>
+								<h6 class="value">Pasien Mendaftar Kurang dari 1 Minggu</h6>
 							</div>
 						</div>
 
@@ -64,7 +65,7 @@
 					<div class="widget-content">
 						<div class="w-header">
 							<div class="w-info">
-								<h6 class="value">Pasien Per-Bulan</h6>
+								<h6 class="value">Pasien Mendaftar Kurang dari 1 Bulan</h6>
 							</div>
 						</div>
 

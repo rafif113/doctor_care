@@ -4,6 +4,37 @@
 
 	<div class="flash-data" data-flashdata="<?= $this->session->flashdata('updateResep'); ?>"></div>
 	<?php unset($_SESSION['updateResep']); ?>
+
+
+	<div class="modal fade" id="tebus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<?= form_open_multipart('pasien/konsultasi/tebus/' . $diagnosa->id_konsultasi, array('method' => 'POST')) ?>
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Penebusan Pada Apotek</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group text-left">
+						<label>Daftar Apotek</label>
+						<select name="id_admin_apotek" class="form-control">
+							<?php foreach ($apotek as $row) { ?>
+								<option value="<?= $row->id_admin_apotek ?>"><?= $row->nama_admin ?></option>
+							<?php	} ?>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+					<button type="submit" class="btn btn-primary">Tebus</button>
+				</div>
+				<?= form_close() ?>
+			</div>
+		</div>
+	</div>
+
 	<div class="container pt-4">
 		<h2 class="text-center">Riwayat Resep Konsultasi</h2>
 		<div class="line mb-4"></div>
@@ -22,7 +53,7 @@
 		<div class="row mt-5">
 			<?php if ($validasi->validasi_pasien === "Belum ditebus") { ?>
 				<div class="book-appointment mb-3">
-					<a class="tebus" href="<?= base_url('pasien/konsultasi/tebus/' . $diagnosa->id_konsultasi) ?>">Tebus Resep</a>
+					<a href="javascript:void(0)" data-toggle="modal" data-target="#tebus">Tebus Resep</a>
 				</div>
 			<?php 	} ?>
 			<table class="table table-striped table-hover ">

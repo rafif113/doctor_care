@@ -104,7 +104,7 @@
  			title: {
  				// text: 'Grafik Pasien'
  			},
- 			labels: ['< 2 Bulan', '< 1 Bulan', '< 3 Minggu', '< 2 Minggu', '< 1 Minggu'],
+ 			labels: ['2 Bulan Terakhir', '1 Bulan Terakhir', '3 Minggu Terakhir', '2 Minggu Terakhir', '1 Minggu Terakhir'],
  			xaxis: {
  				type: 'date'
  			},

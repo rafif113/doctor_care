@@ -32,6 +32,7 @@ class ObatModel extends CI_Model
 		$this->db->from('resep');
 		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = resep.id_konsultasi');
 		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
+		$this->db->where('resep.id_admin_apotek', $this->session->id_admin_apotek);
 		$this->db->group_by('pendaftaran_konsultasi.id_konsultasi');
 		$this->db->order_by('pendaftaran_konsultasi.id_konsultasi', 'asc');
 		$query = $this->db->get();

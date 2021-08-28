@@ -1,3 +1,5 @@
+<link href="<?= base_url('assets/pasien/') ?>time/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+
 <!-- Content -->
 <div class="main-content account-content">
 	<div class="content">
@@ -15,7 +17,7 @@
 								<select name="tanggal" id="tangl" class="form-control">
 									<option>Pilih Tanggal</option>
 									<?php foreach ($jadwal as $data) { ?>
-										<option value="<?= $data->tanggal ?>" data-id="<?= $data->jam_mulai . " - " . $data->jam_berakhir ?>"><?= longdate_indo($data->tanggal) ?></option>
+										<option value="<?= $data->tanggal ?>" data-id="<?= $data->jam_mulai . "," . $data->jam_berakhir ?>"><?= longdate_indo($data->tanggal) ?></option>
 									<?php	} ?>
 								</select>
 								<span class="form-text text-danger"><?= form_error('tanggal'); ?></span>
@@ -23,8 +25,7 @@
 							<div class="form-group">
 								<label>Jam Konsultasi <span class="text-red">*</span>
 								</label>
-								<input type="text" id="timepicker" name="jam" class="form-control timepicker">
-								<span class="form-text" style="font-size: 12px;" id="info-jam"></span>
+								<input id="demo-24h" name="jam" class="form-control" data-label-style="stacked" placeholder="Pilih Waktu..." />
 								<span class="form-text text-danger"><?= form_error('jam'); ?></span>
 							</div>
 							<div class="form-group">
@@ -53,24 +54,20 @@
 <!-- Content /-->
 <script src="<?= base_url('assets/pasien/') ?>js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/pasien/') ?>dropify/js/dropify.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+<script src="<?= base_url('assets/pasien/') ?>time/js/mobiscroll.javascript.min.js"></script>
 <script type="text/javascript">
 	$("#tangl").on('change', function() {
 		var jam_mulai = $(this).find(':selected').data('id')
-		console.log(jam_mulai);
-		$('#info-jam').text(`*Diharapkan menginput pada pukul ${jam_mulai}`);
-	})
-	$(document).ready(function() {
-		$('.timepicker').timepicker({
-			timeFormat: 'H:mm',
-			interval: 60,
-			minTime: '08',
-			maxTime: '8:00pm',
-			defaultTime: '11',
-			startTime: '08:00',
-			dynamic: false,
-			dropdown: true,
-			scrollbar: true
+		const myArr = jam_mulai.split(",");
+		mobiscroll.datepicker('#demo-24h', {
+			themeVariant: 'light',
+			controls: ['time'],
+			timeFormat: 'HH:mm',
+			touchUi: true,
+			min: myArr[0],
+			max: myArr[1]
 		});
-	});
+	})
 </script>

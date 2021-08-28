@@ -39,6 +39,7 @@ class DiagnosaModel extends CI_Model
 		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = rekam_medis.id_konsultasi');
 		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
 		$this->db->where('pendaftaran_konsultasi.status', 'Selesai');
+		$this->db->order_by("rekam_medis.tanggal", "DESC");
 		$query = $this->db->get();
 		return $query;
 	}

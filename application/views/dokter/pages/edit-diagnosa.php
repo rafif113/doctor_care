@@ -217,6 +217,7 @@
 		flatpickr("#myDate", {
 			enableTime: true,
 			dateFormat: "Y-m-d",
+			clickOpens: false
 		});
 	</script>
 	<script>
@@ -224,5 +225,6 @@
 			enableTime: true,
 			noCalendar: true,
 			dateFormat: "H:i",
+			clickOpens: false
 		});
 	</script>

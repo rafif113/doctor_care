@@ -54,7 +54,13 @@ class JadwalModel extends CI_Model
 	public function get_single_jadwal()
 	{
 		$id_dokter = $this->session->id_dokter;
-		return $this->db->get_where('jadwal', ['id_dokter' => $id_dokter]);
+		$this->db->select('*');
+		$this->db->from('jadwal');
+		$this->db->where('id_dokter', $id_dokter);
+		$this->db->group_by('tanggal');
+		$this->db->order_by("tanggal", "DESC");
+		$query = $this->db->get();
+		return $query;
 	}
 
 	public function get_konsultasi()
@@ -65,6 +71,7 @@ class JadwalModel extends CI_Model
 		$this->db->join('pasien', 'pasien.id_pasien = pendaftaran_konsultasi.id_pasien');
 		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
 		$this->db->where('pendaftaran_konsultasi.status !=', 'Menunggu');
+		$this->db->order_by("tanggal", "DESC");
 		$query = $this->db->get();
 		return $query;
 	}
