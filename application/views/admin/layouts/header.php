@@ -54,7 +54,7 @@
 					</a>
 				</li>
 				<li class="nav-item theme-text">
-					<a href="<?= base_url('admin/jadwal') ?>" class="nav-link"> DOKTORCARE </a>
+					<a href="<?= base_url('admin') ?>" class="nav-link"> DOKTORCARE </a>
 				</li>
 			</ul>
 

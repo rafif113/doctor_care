@@ -30,7 +30,22 @@ class DiagnosaModel extends CI_Model
 		return $id;
 	}
 
-	public function daftar_diagnosa()
+	public function dashboard_diagnosa()
+	{
+		$id_dokter = $this->session->id_dokter;
+		$this->db->select('nama_pasien, pasien.id_pasien, email, no_hp');
+		$this->db->from('rekam_medis');
+		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
+		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = rekam_medis.id_konsultasi');
+		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
+		$this->db->where('pendaftaran_konsultasi.status', 'Selesai');
+		$this->db->group_by("pasien.id_pasien");
+		$this->db->order_by("rekam_medis.tanggal", "DESC");
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function daftar_diagnosa($id_pasien)
 	{
 		$id_dokter = $this->session->id_dokter;
 		$this->db->select('nama_pasien, pendaftaran_konsultasi.id_konsultasi, no_record, rekam_medis.tanggal, foto_pemeriksaan');
@@ -38,6 +53,7 @@ class DiagnosaModel extends CI_Model
 		$this->db->join('pasien', 'pasien.id_pasien = rekam_medis.id_pasien');
 		$this->db->join('pendaftaran_konsultasi', 'pendaftaran_konsultasi.id_konsultasi = rekam_medis.id_konsultasi');
 		$this->db->where('pendaftaran_konsultasi.id_dokter', $id_dokter);
+		$this->db->where('pasien.id_pasien', $id_pasien);
 		$this->db->where('pendaftaran_konsultasi.status', 'Selesai');
 		$this->db->order_by("rekam_medis.tanggal", "DESC");
 		$query = $this->db->get();

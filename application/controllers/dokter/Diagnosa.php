@@ -18,7 +18,15 @@ class Diagnosa extends CI_Controller
 
 	public function index()
 	{
-		$data['diagnosa'] = $this->DiagnosaModel->daftar_diagnosa()->result();
+		$data['diagnosa'] = $this->DiagnosaModel->dashboard_diagnosa()->result();
+		$this->load->view('dokter/layouts/header');
+		$this->load->view('dokter/pages/data-diagnosa-dashboard', $data);
+		$this->load->view('dokter/layouts/footer');
+	}
+
+	public function rekam_medis($id_pasien)
+	{
+		$data['diagnosa'] = $this->DiagnosaModel->daftar_diagnosa($id_pasien)->result();
 		$this->load->view('dokter/layouts/header');
 		$this->load->view('dokter/pages/data-diagnosa', $data);
 		$this->load->view('dokter/layouts/footer');

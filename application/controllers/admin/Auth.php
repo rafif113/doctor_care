@@ -43,7 +43,7 @@ class Auth extends CI_Controller
 						'nama_admin' => $user['nama_admin'],
 					];
 					$this->session->set_userdata($data);
-					redirect('admin/kelola/daftar_pasien');
+					redirect('admin/');
 				} else {
 					$this->session->set_flashdata('flash', 'Password Salah');
 					redirect('admin/auth');
